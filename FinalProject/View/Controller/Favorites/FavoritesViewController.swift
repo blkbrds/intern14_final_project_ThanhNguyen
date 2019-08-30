@@ -13,5 +13,18 @@ class FavoritesViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "FAVORITES"
+        configTrashButton()
+    }
+
+    private func configTrashButton() {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        button.setImage(#imageLiteral(resourceName: "ic-trash"), for: .normal)
+        button.addTarget(self, action: #selector(trashButtonDidClick), for: .touchUpInside)
+        let rightButton = UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem = rightButton
+    }
+
+    @objc private func trashButtonDidClick() {
+
     }
 }

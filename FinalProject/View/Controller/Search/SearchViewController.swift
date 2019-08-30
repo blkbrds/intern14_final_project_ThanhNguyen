@@ -10,23 +10,26 @@ import UIKit
 
 class SearchViewController: ViewController {
 
+    let searchController = UISearchController(searchResultsController: nil)
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "SEARCH"
 
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 305, height: 20))
-        searchBar.placeholder = "Search"
-        searchBar.delegate = self
-        let leftNavBar = UIBarButtonItem(customView: searchBar)
-        self.navigationItem.leftBarButtonItem = leftNavBar
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonDidClick))
-        navigationItem.rightBarButtonItem = cancelButton
+        searchUI()
     }
 
-    @objc private func cancelButtonDidClick() {
-        self.title = "SEARCH"
+    private func searchUI() {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 }
 
-extension SearchViewController: UISearchBarDelegate {
+//MARK: SearchResult Delegate
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
 
+    }
 }

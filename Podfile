@@ -24,6 +24,9 @@ target 'FinalProject' do
   # Tool to enforce Swift style and conventions
   pod 'SwiftLint', '0.27.0'
 
+  # Pods for FinalProject
+  pod "YoutubePlayer-in-WKWebView", "~> 0.2.0"
+
   target 'FinalProjectTests' do
     inherit! :search_paths
   end
