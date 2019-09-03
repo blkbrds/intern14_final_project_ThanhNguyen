@@ -8,24 +8,24 @@
 
 import UIKit
 
-class HeaderCollectionCell: UICollectionViewCell {
-    @IBOutlet weak var headerImage: ImageView!
-    @IBOutlet weak var headerNameLabel: Label!
+final class HeaderCollectionCell: UICollectionViewCell {
+    //MARK: - Outlets
+    @IBOutlet private weak var headerImage: ImageView!
+    @IBOutlet private weak var headerNameLabel: Label!
 
-    var image: UIImage?
-    var label: UILabel?
-
-    var viewModel = HeaderCollectionViewModel() {
+    var viewModel: HeaderCollectionViewModel? {
         didSet {
             updateView()
         }
     }
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     private func updateView() {
+        guard let viewModel = viewModel else { return }
         headerImage.image = viewModel.image
-        headerNameLabel.text = viewModel.label
+        headerNameLabel.text = viewModel.headerName
     }
 }

@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 final class HeaderCollectionViewModel {
-    var image = UIImage()
-    var label = String()
+    var image: UIImage?
+    var headerName: String?
 
     init() {}
 
-    init(image: UIImage, label: String) {
+    init(image: UIImage, headerName: String) {
         self.image = image
-        self.label = label
+        self.headerName = headerName
     }
 }

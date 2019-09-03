@@ -8,8 +8,9 @@
 
 import UIKit
 
-class FavoritesViewController: ViewController {
+final class FavoritesViewController: ViewController {
 
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "FAVORITES"
@@ -24,6 +25,7 @@ class FavoritesViewController: ViewController {
         self.navigationItem.rightBarButtonItem = rightButton
     }
 
+    #warning("Chua lam xong button trash")
     @objc private func trashButtonDidClick() {
 
     }

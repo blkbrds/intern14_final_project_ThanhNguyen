@@ -2,7 +2,7 @@
 //  KindCell.swift
 //  FinalProject
 //
-//  Created by PCI0008 on 8/30/19.
+//  Created by PCI0008 on 9/3/19.
 //  Copyright © 2019 Asiantech. All rights reserved.
 //
 
@@ -10,13 +10,13 @@ import UIKit
 import SwiftUtils
 
 class KindCell: UITableViewCell {
-    @IBOutlet weak var collectionView: UICollectionView!
-    var data: [UIImage] = [#imageLiteral(resourceName: "ic-sun"), #imageLiteral(resourceName: "ic-mercury"), #imageLiteral(resourceName: "ic-saturn"), #imageLiteral(resourceName: "ic-earth"), #imageLiteral(resourceName: "ic-asteroidBelt"), #imageLiteral(resourceName: "ic-nepturn"), #imageLiteral(resourceName: "ic-jupiter"), #imageLiteral(resourceName: "ic-venus")]
+    @IBOutlet private weak var collectionView: CollectionView!
+    var viewModel = KindCellViewModel()
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        collectionView.register(KindCollectionViewCell.self)
+        collectionView.register(KindCollectionCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -26,22 +26,20 @@ class KindCell: UITableViewCell {
     }
 }
 
+//MARK: - CollectionView Delegate, DataSource
 extension KindCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return viewModel.data.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeue(KindCollectionViewCell.self, forIndexPath: indexPath)
-        let image = data[indexPath.row]
-        cell.kindImage.image = image
-        cell.kindLabel.text = "adsfasdf"
-        return cell
+        return viewModel.cellForItemAt(collectionView, at: indexPath)
     }
 }
 
+//MARK: - CollectionView Delegate FlowLayout
 extension KindCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 60)
+        return viewModel.sizeForItemAt()
     }
 }

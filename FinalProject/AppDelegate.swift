@@ -23,22 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        //Config Tab Home
-        let homeViewController = HomeViewController()
-        let homeNavigationController = UINavigationController(rootViewController: homeViewController)
-        homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "ic-home"), selectedImage: #imageLiteral(resourceName: "ic-home-selected"))
-
-        //Config Tab Search
-        let searchViewController = SearchViewController()
-        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
-        searchNavigationController.tabBarItem = UITabBarItem(title: "Search", image: #imageLiteral(resourceName: "ic-search"), selectedImage: #imageLiteral(resourceName: "ic-search-selected"))
-
-        //Config Tab Favorites
-        let favoritesViewController = FavoritesViewController()
-        let favoritesNavigationController = UINavigationController(rootViewController: favoritesViewController)
-        favoritesNavigationController.tabBarItem = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "ic-favorites"), selectedImage: #imageLiteral(resourceName: "ic-favorites-selected"))
-
-        let viewControllers = [homeNavigationController, searchNavigationController, favoritesNavigationController]
+        let viewControllers = configTabbar()
         let tabbarController = UITabBarController()
         tabbarController.viewControllers = viewControllers
 
@@ -48,6 +33,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         return true
+    }
+
+    func configTabbar() -> [UINavigationController] {
+        let homeViewController = HomeViewController()
+        let homeNavigationController = UINavigationController(rootViewController: homeViewController)
+        homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "ic-home"), selectedImage: #imageLiteral(resourceName: "ic-home-selected"))
+
+        let searchViewController = SearchViewController()
+        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+        searchNavigationController.tabBarItem = UITabBarItem(title: "Search", image: #imageLiteral(resourceName: "ic-search"), selectedImage: #imageLiteral(resourceName: "ic-search-selected"))
+
+        let favoritesViewController = FavoritesViewController()
+        let favoritesNavigationController = UINavigationController(rootViewController: favoritesViewController)
+        favoritesNavigationController.tabBarItem = UITabBarItem(title: "Favorites", image: #imageLiteral(resourceName: "ic-favorites"), selectedImage: #imageLiteral(resourceName: "ic-favorites-selected"))
+
+        return [homeNavigationController, searchNavigationController, favoritesNavigationController]
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

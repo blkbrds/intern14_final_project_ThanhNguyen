@@ -8,20 +8,22 @@
 
 import UIKit
 
-class ChannelCell: UITableViewCell {
-    @IBOutlet weak var channelImage: UIImageView!
-    @IBOutlet weak var channelLabel: Label!
-    @IBOutlet weak var channelDescriptionLabel: Label!
+final class ChannelCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet private weak var channelImage: ImageView!
+    @IBOutlet private weak var channelLabel: Label!
+    @IBOutlet private weak var channelDescriptionLabel: Label!
+
+    var viewModel: ChannelCellViewModel? {
+        didSet {
+            updateView()
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    private func updateView() {
+        guard let viewModel = viewModel else { return }
+        channelImage.image = viewModel.image
+        channelLabel.text = viewModel.channelName
+        channelDescriptionLabel.text = viewModel.channelDescriptionText
     }
-
 }

@@ -12,7 +12,7 @@ import Alamofire
 final class Api {
 
     struct Path {
-        static let baseURL = "https://"
+        static let baseURL = "https://www.googleapis.com/youtube/v3/" + "search?pageToken=CBkQAA&part=snippet&maxResults=25&order=relevance&q=lactroi&key=AIzaSyDIJ9UssMoN9IfR9KnTc4lb3B9NtHpRF-c"
     }
 }
 

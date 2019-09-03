@@ -9,14 +9,18 @@
 import UIKit
 import SwiftUtils
 
-class HeaderCell: UITableViewCell {
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var pageControlView: UIPageControl!
+final class HeaderCell: UITableViewCell {
 
+    // MARK: - Outlets
+    @IBOutlet private weak var collectionView: CollectionView!
+    @IBOutlet private weak var pageControlView: UIPageControl!
+
+    // MARK: - Propeties
     var timer = Timer()
     var counter = 0
+    var viewModel = HeaderCellViewModel()
 
-    var data: [UIImage] = [#imageLiteral(resourceName: "ic-sun"), #imageLiteral(resourceName: "ic-mercury"), #imageLiteral(resourceName: "ic-saturn"), #imageLiteral(resourceName: "ic-earth"), #imageLiteral(resourceName: "ic-asteroidBelt"), #imageLiteral(resourceName: "ic-nepturn"), #imageLiteral(resourceName: "ic-jupiter"), #imageLiteral(resourceName: "ic-venus")]
+    //MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -24,7 +28,7 @@ class HeaderCell: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        pageControlView.numberOfPages = data.count
+        pageControlView.numberOfPages = viewModel.data.count
         pageControlView.currentPage = 0
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
@@ -32,7 +36,7 @@ class HeaderCell: UITableViewCell {
     }
 
     @objc private func changeImage() {
-        if counter < data.count {
+        if counter < viewModel.data.count {
             let index = IndexPath.init(item: counter, section: 0)
             self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
             pageControlView.currentPage = counter
@@ -49,37 +53,34 @@ class HeaderCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
 }
 
+//MARK: UICollectionViewDelegate, UICollectionViewDataSource
 extension HeaderCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return viewModel.numberOfItemsInSection()
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeue(HeaderCollectionCell.self, forIndexPath: indexPath)
-        let image = data[indexPath.row]
-        cell.viewModel = HeaderCollectionViewModel(image: image, label: "ABC123123123")
-        return cell
+        return viewModel.cellForItemAt(collectionView, at: indexPath)
     }
 }
 
+//MARK: - CollectionView Delegate FlowLayout
 extension HeaderCell: UICollectionViewDelegateFlowLayout {
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: kScreenSize.width, height: 200)
+        return viewModel.collectionViewLayout()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return viewModel.collectionViewLayout()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+        return viewModel.collectionViewLayout()
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
+        return viewModel.collectionViewLayout()
     }
 }
