@@ -16,6 +16,8 @@ final class HomeViewController: ViewController {
 
     // MARK: - Propeties
     var viewModel = HomeViewModel()
+    var videos = [YouTube]()
+    var token = ""
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -23,6 +25,10 @@ final class HomeViewController: ViewController {
 
         title = "HOME"
         configTableView()
+        setupData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: Private func
@@ -31,6 +37,23 @@ final class HomeViewController: ViewController {
         tableView.register(ChannelCell.self)
         tableView.register(KindCell.self)
         tableView.register(HomeSectionHeaderView.self)
+    }
+
+    func setupData() {
+        APIManager.YouTube.getBot(pageToken: token, maxResults: 10, keyword: "") { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let dummy):
+                self.token = dummy.token
+                for video in dummy.video {
+                    self.videos.append(video)
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 }
 

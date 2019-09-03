@@ -9,20 +9,22 @@
 import UIKit
 
 class SearchCell: UITableViewCell {
-    @IBOutlet weak var searchImage: UIImageView!
-    @IBOutlet weak var searchVideoLabel: UILabel!
-    @IBOutlet weak var channelLabel: UILabel!
-    @IBOutlet weak var viewLabel: UILabel!
+    @IBOutlet weak var videoImage: UIImageView!
+    @IBOutlet weak var videoNameLabel: UILabel!
+    @IBOutlet weak var channelNameLabel: UILabel!
+    @IBOutlet weak var viewsLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var viewModel: SearchCellViewModel? {
+        didSet {
+            updateView()
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    private func updateView() {
+        guard let viewModel = viewModel else { return }
+        videoImage.image = viewModel.videoImage
+        videoNameLabel.text = viewModel.videoName
+        channelNameLabel.text = viewModel.channelName
+        viewsLabel.text = viewModel.views
     }
-    
 }

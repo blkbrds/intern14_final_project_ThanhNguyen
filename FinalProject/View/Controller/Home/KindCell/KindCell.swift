@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUtils
 
-class KindCell: UITableViewCell {
+final class KindCell: UITableViewCell {
     @IBOutlet private weak var collectionView: CollectionView!
     var viewModel = KindCellViewModel()
 

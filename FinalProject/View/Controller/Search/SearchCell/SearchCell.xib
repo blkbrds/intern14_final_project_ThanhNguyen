@@ -23,25 +23,25 @@
                         <rect key="frame" x="3" y="3" width="143.5" height="162.5"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F9D-13-bcc">
-                        <rect key="frame" x="146.5" y="0.0" width="331.5" height="168.5"/>
+                        <rect key="frame" x="156.5" y="0.0" width="321.5" height="168.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y6F-oa-2De">
-                                <rect key="frame" x="0.0" y="0.0" width="331.5" height="84.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="321.5" height="84.5"/>
                                 <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2zZ-dQ-7BV">
-                                <rect key="frame" x="0.0" y="84.5" width="331.5" height="84"/>
+                                <rect key="frame" x="0.0" y="84.5" width="321.5" height="84"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woR-Xs-gDH">
-                                        <rect key="frame" x="0.0" y="0.0" width="331.5" height="39.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="321.5" height="39.5"/>
                                         <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaj-g9-ajF">
-                                        <rect key="frame" x="0.0" y="44.5" width="331.5" height="39.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="321.5" height="39.5"/>
                                         <fontDescription key="fontDescription" name="Arial-ItalicMT" family="Arial" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -67,7 +67,7 @@
                     <constraint firstAttribute="bottom" secondItem="nR5-Mm-VLa" secondAttribute="bottom" constant="3" id="LoU-TS-gXP"/>
                     <constraint firstAttribute="trailing" secondItem="F9D-13-bcc" secondAttribute="trailing" id="Ra8-m2-xzR"/>
                     <constraint firstItem="F9D-13-bcc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xxa-uA-zMA"/>
-                    <constraint firstItem="F9D-13-bcc" firstAttribute="leading" secondItem="nR5-Mm-VLa" secondAttribute="trailing" id="Y3E-wX-6ph"/>
+                    <constraint firstItem="F9D-13-bcc" firstAttribute="leading" secondItem="nR5-Mm-VLa" secondAttribute="trailing" constant="10" id="Y3E-wX-6ph"/>
                     <constraint firstItem="nR5-Mm-VLa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="buq-mV-efJ"/>
                     <constraint firstItem="nR5-Mm-VLa" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.3" id="gAu-qN-iBq"/>
                     <constraint firstItem="nR5-Mm-VLa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="hoY-9e-GmT"/>
@@ -76,10 +76,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="channelLabel" destination="woR-Xs-gDH" id="kxZ-JD-MGa"/>
-                <outlet property="searchImage" destination="nR5-Mm-VLa" id="io0-md-wof"/>
-                <outlet property="searchVideoLabel" destination="y6F-oa-2De" id="LFp-Jj-TS3"/>
-                <outlet property="viewLabel" destination="eaj-g9-ajF" id="1Uj-2Z-krh"/>
+                <outlet property="channelNameLabel" destination="woR-Xs-gDH" id="kxZ-JD-MGa"/>
+                <outlet property="videoImage" destination="nR5-Mm-VLa" id="io0-md-wof"/>
+                <outlet property="videoNameLabel" destination="y6F-oa-2De" id="LFp-Jj-TS3"/>
+                <outlet property="viewsLabel" destination="eaj-g9-ajF" id="1Uj-2Z-krh"/>
             </connections>
             <point key="canvasLocation" x="246.37681159420291" y="195.20089285714286"/>
         </tableViewCell>

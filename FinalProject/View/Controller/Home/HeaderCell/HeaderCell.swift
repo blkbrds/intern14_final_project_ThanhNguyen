@@ -20,7 +20,7 @@ final class HeaderCell: UITableViewCell {
     var counter = 0
     var viewModel = HeaderCellViewModel()
 
-    //MARK: LifeCycle
+    // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -55,7 +55,7 @@ final class HeaderCell: UITableViewCell {
     }
 }
 
-//MARK: UICollectionViewDelegate, UICollectionViewDataSource
+// MARK: UICollectionViewDelegate, UICollectionViewDataSource
 extension HeaderCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection()
@@ -66,7 +66,7 @@ extension HeaderCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-//MARK: - CollectionView Delegate FlowLayout
+// MARK: - CollectionView Delegate FlowLayout
 extension HeaderCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return viewModel.collectionViewLayout()

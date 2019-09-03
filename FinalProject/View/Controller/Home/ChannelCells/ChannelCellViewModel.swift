@@ -21,5 +21,5 @@ final class ChannelCellViewModel {
         self.image = image
         self.channelName = channelName
         self.channelDescriptionText = channelDescriptionText
-    }    
+    }
 }
