@@ -10,13 +10,10 @@ import UIKit
 
 class KindCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var kindImage: UIImageView!
-    
+    @IBOutlet weak var kindLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        layer.cornerRadius = 5
-        clipsToBounds = true
-        kindImage.clipsToBounds = true
     }
 
     func undateCell(image: UIImage) {

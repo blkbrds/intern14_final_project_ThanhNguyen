@@ -9,8 +9,11 @@
 import UIKit
 
 class HeaderCollectionCell: UICollectionViewCell {
-    @IBOutlet weak var headerImage: UIImageView!
+    @IBOutlet weak var headerImage: ImageView!
+    @IBOutlet weak var headerNameLabel: Label!
+
     var image: UIImage?
+    var label: UILabel?
 
     var viewModel = HeaderCollectionViewModel() {
         didSet {
@@ -19,11 +22,10 @@ class HeaderCollectionCell: UICollectionViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-
-
     }
 
     private func updateView() {
         headerImage.image = viewModel.image
+        headerNameLabel.text = viewModel.label
     }
 }

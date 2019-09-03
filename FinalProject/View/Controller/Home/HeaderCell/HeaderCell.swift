@@ -60,7 +60,7 @@ extension HeaderCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(HeaderCollectionCell.self, forIndexPath: indexPath)
         let image = data[indexPath.row]
-        cell.viewModel = HeaderCollectionViewModel(image: image)
+        cell.viewModel = HeaderCollectionViewModel(image: image, label: "ABC123123123")
         return cell
     }
 }

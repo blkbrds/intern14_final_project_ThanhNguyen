@@ -35,12 +35,13 @@ extension KindCell: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeue(KindCollectionViewCell.self, forIndexPath: indexPath)
         let image = data[indexPath.row]
         cell.kindImage.image = image
+        cell.kindLabel.text = "adsfasdf"
         return cell
     }
 }
 
 extension KindCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 200, height: 150)
+        return CGSize(width: 100, height: 60)
     }
 }

@@ -51,14 +51,14 @@ final class HomeViewModel {
     }
     
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
-        guard let section = Section(rawValue: indexPath.row) else { return 0 }
+        guard let section = Section(rawValue: indexPath.section) else { return 0 }
         switch section {
         case .trending:
             return 200
         case .channel:
-            return 120
+            return 100
         default:
-            return 150
+            return 80
         }
     }
 }

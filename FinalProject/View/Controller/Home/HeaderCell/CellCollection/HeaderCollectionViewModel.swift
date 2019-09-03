@@ -11,10 +11,12 @@ import UIKit
 
 final class HeaderCollectionViewModel {
     var image = UIImage()
-    init() {
-        
-    }
-    init(image: UIImage) {
+    var label = String()
+
+    init() {}
+
+    init(image: UIImage, label: String) {
         self.image = image
+        self.label = label
     }
 }
