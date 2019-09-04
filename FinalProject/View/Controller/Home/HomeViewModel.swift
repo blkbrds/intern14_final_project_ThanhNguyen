@@ -11,9 +11,6 @@ import SwiftUtils
 
 final class HomeViewModel {
 
-    // MARK: Propeties
-    var channel: [String] = ["123","456","789"]
-
     enum SectionType: Int, CaseIterable {
         case trending
         case bolero
@@ -48,7 +45,7 @@ final class HomeViewModel {
         case .trending, .bolero, .nhacVang, .nhacXuan:
             return 1
         default:
-            return channel.count
+            return 10
         }
     }
 

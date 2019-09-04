@@ -10,8 +10,8 @@ import UIKit
 
 final class HeaderCollectionCell: UICollectionViewCell {
     // MARK: - Outlets
-    @IBOutlet private weak var headerImage: ImageView!
-    @IBOutlet private weak var headerNameLabel: Label!
+    @IBOutlet weak var headerImage: ImageView!
+    @IBOutlet weak var headerNameLabel: Label!
 
     var viewModel: HeaderCollectionViewModel? {
         didSet {

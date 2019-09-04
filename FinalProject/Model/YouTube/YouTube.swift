@@ -7,12 +7,25 @@
 //
 
 import Foundation
-import UIKit
+import ObjectMapper
 
-struct YouTube {
-    var titleVideo: String
-    var thumbnail: UIImage?
-    var publishedAt: String
-    var channelTitle: String
-    var imageStr: String
+@objcMembers final class YouTube: Mappable {
+
+    @objc dynamic var id = ""
+    @objc dynamic var titleVideo = ""
+    @objc dynamic var thumbnailURL = ""
+    @objc dynamic var publishedAt = ""
+    @objc dynamic var channelTitle = ""
+
+    init() { }
+
+    init?(map: Map) {}
+
+    func mapping(map: Map) {
+        id <- map["id.videoId"]
+        titleVideo <- map["snippet.title"]
+        thumbnailURL <- map["snippet.thumbnails.high.url"]
+        publishedAt <- map["snippet.publishedAt"]
+        channelTitle <- map["snippet.channelTitle"]
+    }
 }

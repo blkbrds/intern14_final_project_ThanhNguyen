@@ -16,8 +16,6 @@ final class HeaderCell: UITableViewCell {
     @IBOutlet private weak var pageControlView: UIPageControl!
 
     // MARK: - Propeties
-    var timer = Timer()
-    var counter = 0
     var viewModel = HeaderCellViewModel()
 
     // MARK: LifeCycle
@@ -29,25 +27,6 @@ final class HeaderCell: UITableViewCell {
         collectionView.delegate = self
 
         pageControlView.numberOfPages = viewModel.data.count
-        pageControlView.currentPage = 0
-        DispatchQueue.main.async {
-            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.changeImage), userInfo: nil, repeats: true)
-        }
-    }
-
-    @objc private func changeImage() {
-        if counter < viewModel.data.count {
-            let index = IndexPath.init(item: counter, section: 0)
-            self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-            pageControlView.currentPage = counter
-            counter += 1
-        } else {
-            counter = 0
-            let index = IndexPath.init(item: counter, section: 0)
-            self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
-            pageControlView.currentPage = counter
-            counter = 1
-        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

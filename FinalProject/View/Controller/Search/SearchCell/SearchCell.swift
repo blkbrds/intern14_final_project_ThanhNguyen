@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class SearchCell: UITableViewCell {
     @IBOutlet private weak var videoImage: ImageView!
@@ -22,7 +23,7 @@ final class SearchCell: UITableViewCell {
 
     private func updateView() {
         guard let viewModel = viewModel else { return }
-        videoImage.image = viewModel.videoImage
+        videoImage.sd_setImage(with: URL(string: viewModel.videoImage), placeholderImage: UIImage(named: "defaut.png"))
         videoNameLabel.text = viewModel.videoName
         channelNameLabel.text = viewModel.channelName
         viewsLabel.text = viewModel.views

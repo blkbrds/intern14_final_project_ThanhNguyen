@@ -8,45 +8,32 @@
 
 import Foundation
 import SwiftUtils
+import MVVM
 
-final class SearchViewModel {
-    var videos = [YouTube]()
+final class SearchViewModel: MVVM.ViewModel {
+    var searchResult: SearchResult = SearchResult()
     var token = ""
+    var searchText = ""
 
-    func setupData() {
-        APIManager.YouTube.getBot(pageToken: token, maxResults: 10, keyword: "") { (result) in
+    func getData(completion: @escaping APICompletion) {
+        Api.Search.getSearchResult(pageToken: token, maxResults: 10, keyword: searchText) { result in
             switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let dummy):
-                self.token = dummy.token
-                for video in dummy.video {
-                    self.videos.append(video)
+            case .success(let searchResult):
+                self.token = searchResult.nextPageToken
+                for video in searchResult.items {
+                    self.searchResult.items.append(video)
                 }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
 
     func getSearchCellModel(at indexPath: IndexPath) -> SearchCellViewModel {
-        let video = videos[indexPath.row]
-        let search = SearchCellViewModel()
-        search.videoName = video.titleVideo
-        search.channelName = video.channelTitle
-        search.views = video.publishedAt
-
-        if let thumbnail = video.thumbnail {
-            search.videoImage = thumbnail
-        } else {
-            search.videoImage = nil
-            APIManager.Downloader.downloadImage(imageURL: video.imageStr, index: indexPath.row) { (image, index) in
-                var video = self.videos[index]
-                video.thumbnail = image
-            }
-        }
-        return search
-    }
-
-    func heightForRowAt() -> CGFloat {
-        return 110
+        return SearchCellViewModel(videoImage: searchResult.items[indexPath.row].thumbnailURL,
+                                   videoName: searchResult.items[indexPath.row].titleVideo,
+                                   channelName: searchResult.items[indexPath.row].channelTitle,
+                                   views: searchResult.items[indexPath.row].publishedAt)
     }
 }

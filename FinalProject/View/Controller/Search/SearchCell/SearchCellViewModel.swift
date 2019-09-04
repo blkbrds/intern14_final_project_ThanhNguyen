@@ -10,14 +10,12 @@ import Foundation
 import UIKit
 
 final class SearchCellViewModel {
-    var videoImage: UIImage?
+    var videoImage: String = ""
     var videoName: String = ""
     var channelName: String = ""
     var views: String = ""
 
-    init() {}
-
-    init(videoImage: UIImage, videoName: String, channelName: String, views: String) {
+    init(videoImage: String, videoName: String, channelName: String, views: String) {
         self.videoImage = videoImage
         self.videoName = videoName
         self.channelName = channelName
