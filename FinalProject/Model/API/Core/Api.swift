@@ -16,6 +16,8 @@ final class Api {
     }
 
     struct Search {}
+    
+    struct Channel {}
 }
 
 extension Api.Path {

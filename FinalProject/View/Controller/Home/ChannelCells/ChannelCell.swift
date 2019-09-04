@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class ChannelCell: UITableViewCell {
 
@@ -22,7 +23,7 @@ final class ChannelCell: UITableViewCell {
 
     private func updateView() {
         guard let viewModel = viewModel else { return }
-        channelImage.image = viewModel.image
+        channelImage.sd_setImage(with: URL(string: viewModel.channelImageURL), placeholderImage: #imageLiteral(resourceName: "ic-youtube"))
         channelLabel.text = viewModel.channelName
         channelDescriptionLabel.text = viewModel.channelDescriptionText
     }

@@ -8,8 +8,14 @@
 
 import Foundation
 import SwiftUtils
+import MVVM
 
-final class HomeViewModel {
+final class HomeViewModel: MVVM.ViewModel {
+
+    // MARK: - Propeties
+    // Dùng chung 1 API với Search
+    var channelResult: SearchResult = SearchResult()
+    var token = ""
 
     enum SectionType: Int, CaseIterable {
         case trending
@@ -35,7 +41,22 @@ final class HomeViewModel {
     }
 
     // MARK: - Public func
-    func numberOfSection() -> Int {
+    func getData(completion: @escaping APICompletion) {
+        Api.Channel.getSearchResult(pageToken: token, maxResults: 20, keyword: "karaoke") { result in
+            switch result {
+            case .success(let channelResult):
+                self.token = channelResult.nextPageToken
+                for video in channelResult.items {
+                    self.channelResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func numberOfSections() -> Int {
         return SectionType.allCases.count
     }
 
@@ -45,14 +66,14 @@ final class HomeViewModel {
         case .trending, .bolero, .nhacVang, .nhacXuan:
             return 1
         default:
-            return 10
+            return channelResult.items.count
         }
     }
 
     func getChannelCellModel(at indexPath: IndexPath) -> ChannelCellViewModel {
-        return ChannelCellViewModel(image: #imageLiteral(resourceName: "ic-jupiter"),
-                                    channelName: "adfsdf",
-                                    channelDescriptionText: "asdfasdf")
+        return ChannelCellViewModel(channelImageURL: channelResult.items[indexPath.row].thumbnailURL,
+                                    channelName: channelResult.items[indexPath.row].channelTitle,
+                                    channelDescriptionText: channelResult.items[indexPath.row].publishedAt)
     }
 
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {

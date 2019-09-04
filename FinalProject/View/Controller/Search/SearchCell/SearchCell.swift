@@ -23,7 +23,7 @@ final class SearchCell: UITableViewCell {
 
     private func updateView() {
         guard let viewModel = viewModel else { return }
-        videoImage.sd_setImage(with: URL(string: viewModel.videoImage), placeholderImage: UIImage(named: "defaut.png"))
+        videoImage.sd_setImage(with: URL(string: viewModel.videoImage), placeholderImage: #imageLiteral(resourceName: "ic-youtube"))
         videoNameLabel.text = viewModel.videoName
         channelNameLabel.text = viewModel.channelName
         viewsLabel.text = viewModel.views

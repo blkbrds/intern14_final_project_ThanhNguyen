@@ -20,17 +20,37 @@ final class HomeViewController: ViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = "HOME"
-        configTableView()
+        registerTableView()
+
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getData()
     }
 
     // MARK: Private func
-    private func configTableView() {
+    private func registerTableView() {
         tableView.register(HeaderCell.self)
         tableView.register(ChannelCell.self)
         tableView.register(KindCell.self)
         tableView.register(HomeSectionHeaderView.self)
+    }
+
+    private func getData() {
+        viewModel.getData { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
     }
 }
 
@@ -38,7 +58,7 @@ final class HomeViewController: ViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSection()
+        return viewModel.numberOfSections()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,9 +67,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let sectionType = HomeViewModel.SectionType(rawValue: section) else { return UIView() }
-        let headerView = tableView.dequeue(HomeSectionHeaderView.self)
-        headerView.updateUI(sectionName: sectionType.title)
-        return headerView
+        let sectionView = tableView.dequeue(HomeSectionHeaderView.self)
+        sectionView.updateUI(sectionName: sectionType.title)
+        return sectionView
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -74,5 +94,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return viewModel.heightForRowAt(at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.channelResult.items.count - 3 {
+            getData()
+        }
     }
 }
