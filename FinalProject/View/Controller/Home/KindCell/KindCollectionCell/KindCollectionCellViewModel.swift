@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 
 final class KindCollectionCellViewModel {
-    var image: UIImage?
-    var kindLabel: String?
-
-    init() {}
+    var image: UIImage = #imageLiteral(resourceName: "ic-youtube")
+    var kindLabel: String = ""
 
     init(image: UIImage, kindLabel: String) {
         self.image = image

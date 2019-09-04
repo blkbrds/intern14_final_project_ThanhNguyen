@@ -10,12 +10,10 @@ import Foundation
 import UIKit
 
 final class UserCellViewModel {
-    var userImage: UIImage?
-    var userNameLabel: String?
-    var dateCommentLabel: String?
-    var commentLabel: String?
-
-    init() {}
+    var userImage: UIImage = #imageLiteral(resourceName: "ic-youtube")
+    var userNameLabel: String = ""
+    var dateCommentLabel: String = ""
+    var commentLabel: String = ""
 
     init(userImage: UIImage, userNameLabel: String, dateCommentLabel: String, commentLabel: String) {
         self.userImage = userImage

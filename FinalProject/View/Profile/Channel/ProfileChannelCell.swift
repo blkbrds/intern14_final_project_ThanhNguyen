@@ -9,7 +9,7 @@
 import UIKit
 
 class ProfileChannelCell: UITableViewCell {
-    
+
     @IBOutlet weak var imageChannel: ImageView!
     @IBOutlet weak var channelLabel: Label!
     @IBOutlet weak var dateLabel: Label!
@@ -27,5 +27,4 @@ class ProfileChannelCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

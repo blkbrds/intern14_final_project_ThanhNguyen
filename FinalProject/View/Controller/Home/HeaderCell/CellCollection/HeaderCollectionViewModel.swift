@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 
 final class HeaderCollectionViewModel {
-    var image: UIImage?
-    var headerName: String?
-
-    init() {}
+    var image: UIImage = #imageLiteral(resourceName: "ic-youtube")
+    var headerName: String = ""
 
     init(image: UIImage, headerName: String) {
         self.image = image

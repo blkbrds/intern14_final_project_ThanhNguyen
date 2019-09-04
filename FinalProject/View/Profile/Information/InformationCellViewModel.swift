@@ -10,12 +10,10 @@ import Foundation
 import UIKit
 
 final class InformationCellViewModel {
-    var videoNameLabel: String?
-    var kindNameLabel: String?
-    var creatorNameLabel: String?
-    var trendNameLabel: String?
-
-    init() {}
+    var videoNameLabel: String = ""
+    var kindNameLabel: String = ""
+    var creatorNameLabel: String = ""
+    var trendNameLabel: String = ""
 
     init(videoNameLabel: String, kindNameLabel: String, creatorNameLabel: String, trendNameLabel: String) {
         self.videoNameLabel = videoNameLabel

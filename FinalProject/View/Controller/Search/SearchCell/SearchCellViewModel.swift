@@ -11,9 +11,9 @@ import UIKit
 
 final class SearchCellViewModel {
     var videoImage: UIImage?
-    var videoName: String?
-    var channelName: String?
-    var views: String?
+    var videoName: String = ""
+    var channelName: String = ""
+    var views: String = ""
 
     init() {}
 

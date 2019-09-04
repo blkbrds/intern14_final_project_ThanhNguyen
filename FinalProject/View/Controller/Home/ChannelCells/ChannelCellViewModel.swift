@@ -11,11 +11,9 @@ import UIKit
 
 final class ChannelCellViewModel {
 
-    var image: UIImage?
-    var channelName: String?
-    var channelDescriptionText: String?
-
-    init() {}
+    var image: UIImage = #imageLiteral(resourceName: "ic-youtube")
+    var channelName: String = ""
+    var channelDescriptionText: String = ""
 
     init(image: UIImage, channelName: String, channelDescriptionText: String) {
         self.image = image
