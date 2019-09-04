@@ -30,6 +30,23 @@ final class SearchViewModel {
     func getSearchCellModel(at indexPath: IndexPath) -> SearchCellViewModel {
         let video = videos[indexPath.row]
         let search = SearchCellViewModel()
-        return SearchCellViewModel(videoImage: <#T##UIImage#>, videoName: <#T##String#>, channelName: <#T##String#>, views: <#T##String#>)
+        search.videoName = video.titleVideo
+        search.channelName = video.channelTitle
+        search.views = video.publishedAt
+
+        if let thumbnail = video.thumbnail {
+            search.videoImage = thumbnail
+        } else {
+            search.videoImage = nil
+            APIManager.Downloader.downloadImage(imageURL: video.imageStr, index: indexPath.row) { (image, index) in
+                var video = self.videos[index]
+                video.thumbnail = image
+            }
+        }
+        return search
+    }
+
+    func heightForRowAt() -> CGFloat {
+        return 110
     }
 }

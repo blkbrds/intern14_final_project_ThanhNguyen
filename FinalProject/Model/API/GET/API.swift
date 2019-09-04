@@ -31,7 +31,7 @@ enum APIResult {
 }
 
 struct API {
-    //singleton
+    // Singleton
     private static var sharedAPI: API = {
         let sharedAPI = API()
         return sharedAPI
@@ -41,6 +41,6 @@ struct API {
         return sharedAPI
     }
 
-    //init
+    // init
     private init() {}
 }

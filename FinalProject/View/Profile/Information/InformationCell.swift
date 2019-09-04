@@ -8,11 +8,11 @@
 
 import UIKit
 
-class InformationCell: UITableViewCell {
-    @IBOutlet weak var videoNameLabel: Label!
-    @IBOutlet weak var kindNameLabel: Label!
-    @IBOutlet weak var creatorNameLabel: Label!
-    @IBOutlet weak var trendNameLabel: Label!
+final class InformationCell: UITableViewCell {
+    @IBOutlet private weak var videoNameLabel: Label!
+    @IBOutlet private weak var kindNameLabel: Label!
+    @IBOutlet private weak var creatorNameLabel: Label!
+    @IBOutlet private weak var trendNameLabel: Label!
 
     override func awakeFromNib() {
         super.awakeFromNib()

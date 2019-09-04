@@ -9,7 +9,7 @@
 import UIKit
 
 final class HeaderCollectionCell: UICollectionViewCell {
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet private weak var headerImage: ImageView!
     @IBOutlet private weak var headerNameLabel: Label!
 

@@ -10,7 +10,7 @@ import UIKit
 
 final class FavoritesViewController: ViewController {
 
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "FAVORITES"

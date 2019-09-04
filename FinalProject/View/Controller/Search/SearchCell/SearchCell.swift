@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SearchCell: UITableViewCell {
-    @IBOutlet weak var videoImage: UIImageView!
-    @IBOutlet weak var videoNameLabel: UILabel!
-    @IBOutlet weak var channelNameLabel: UILabel!
-    @IBOutlet weak var viewsLabel: UILabel!
+final class SearchCell: UITableViewCell {
+    @IBOutlet private weak var videoImage: ImageView!
+    @IBOutlet private weak var videoNameLabel: Label!
+    @IBOutlet private weak var channelNameLabel: Label!
+    @IBOutlet private weak var viewsLabel: Label!
 
     var viewModel: SearchCellViewModel? {
         didSet {

@@ -8,12 +8,12 @@
 
 import UIKit
 
-class UserCell: UITableViewCell {
-    @IBOutlet weak var userImage: ImageView!
-    @IBOutlet weak var userNameLabel: Label!
-    @IBOutlet weak var dateCommentLabel: Label!
-    @IBOutlet weak var commentLabel: Label!
-    
+final class UserCell: UITableViewCell {
+    @IBOutlet private weak var userImage: ImageView!
+    @IBOutlet private weak var userNameLabel: Label!
+    @IBOutlet private weak var dateCommentLabel: Label!
+    @IBOutlet private weak var commentLabel: Label!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

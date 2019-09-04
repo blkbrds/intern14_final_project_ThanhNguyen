@@ -9,13 +9,14 @@
 import UIKit
 import YoutubePlayer_in_WKWebView
 
-class ProfileViewController: ViewController {
-    @IBOutlet weak var playerView: WKYTPlayerView!
-    @IBOutlet weak var tableView: UITableView!
-    
+final class ProfileViewController: ViewController {
+    @IBOutlet private weak var playerView: WKYTPlayerView!
+    @IBOutlet private weak var tableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Demo YouTube Player
         playerView.load(withVideoId: "DNrNBLI3d68")
     }
 }

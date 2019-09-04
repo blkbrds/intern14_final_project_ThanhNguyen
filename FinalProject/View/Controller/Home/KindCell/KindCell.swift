@@ -26,7 +26,7 @@ final class KindCell: UITableViewCell {
     }
 }
 
-//MARK: - CollectionView Delegate, DataSource
+// MARK: - CollectionView Delegate, DataSource
 extension KindCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.data.count
@@ -37,7 +37,7 @@ extension KindCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-//MARK: - CollectionView Delegate FlowLayout
+// MARK: - CollectionView Delegate FlowLayout
 extension KindCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return viewModel.sizeForItemAt()

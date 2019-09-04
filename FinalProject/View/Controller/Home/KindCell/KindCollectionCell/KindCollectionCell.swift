@@ -9,7 +9,7 @@
 import UIKit
 
 final class KindCollectionCell: UICollectionViewCell {
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var kindImage: ImageView!
     @IBOutlet weak var kindLabel: Label!
 
