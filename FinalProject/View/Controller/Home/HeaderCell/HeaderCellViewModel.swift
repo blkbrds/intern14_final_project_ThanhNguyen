@@ -8,33 +8,23 @@
 
 import Foundation
 import SwiftUtils
+import MVVM
 
-final class HeaderCellViewModel {
+final class HeaderCellViewModel: MVVM.ViewModel {
     // MARK: - Propeties
     var headerResult: SearchResult = SearchResult()
-    var token = ""
+
+    init(headerResult: SearchResult = SearchResult()) {
+        self.headerResult = headerResult
+    }
 
     // MARK: - Public func
-    func getData(completion: @escaping APICompletion) {
-        Api.Search.getSearchResult(pageToken: token, maxResults: 5, keyword: "trending") { result in
-            switch result {
-            case .success(let headerResult):
-                self.token = headerResult.nextPageToken
-                for video in headerResult.items {
-                    self.headerResult.items.append(video)
-                }
-                completion(.success)
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
 
     func numberOfItemsInSection() -> Int {
         return headerResult.items.count
     }
 
-    func getHeaderCellModel(at indexPath: IndexPath) -> HeaderCollectionViewModel {
+    func getTrendingCellModel(at indexPath: IndexPath) -> HeaderCollectionViewModel {
         return HeaderCollectionViewModel(imageURL: headerResult.items[indexPath.row].thumbnailURL, headerName: headerResult.items[indexPath.row].titleVideo)
     }
 }

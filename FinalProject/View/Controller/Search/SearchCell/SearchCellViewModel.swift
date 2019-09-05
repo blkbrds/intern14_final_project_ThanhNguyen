@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import MVVM
 
-final class SearchCellViewModel {
+final class SearchCellViewModel: MVVM.ViewModel {
+    
     var videoImage: String = ""
     var videoName: String = ""
     var channelName: String = ""

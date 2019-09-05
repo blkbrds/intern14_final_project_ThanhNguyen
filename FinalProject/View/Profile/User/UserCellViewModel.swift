@@ -7,18 +7,19 @@
 //
 
 import Foundation
-import UIKit
+import MVVM
 
-final class UserCellViewModel {
-    var userImage: UIImage = #imageLiteral(resourceName: "ic-youtube")
-    var userNameLabel: String = ""
-    var dateCommentLabel: String = ""
+final class UserCellViewModel: MVVM.ViewModel {
+
+    var userImageURL: String = ""
+    var userName: String = ""
+    var dateComment: String = ""
     var commentLabel: String = ""
 
-    init(userImage: UIImage, userNameLabel: String, dateCommentLabel: String, commentLabel: String) {
-        self.userImage = userImage
-        self.userNameLabel = userNameLabel
-        self.dateCommentLabel = dateCommentLabel
+    init(userImageURL: String, userNameLabel: String, dateCommentLabel: String, commentLabel: String) {
+        self.userImageURL = userImageURL
+        self.userName = userNameLabel
+        self.dateComment = dateCommentLabel
         self.commentLabel = commentLabel
     }
 }

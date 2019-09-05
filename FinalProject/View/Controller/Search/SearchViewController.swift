@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUtils
 
-class SearchViewController: ViewController {
+final class SearchViewController: ViewController {
     // MARK: - Outlets
     @IBOutlet private weak var tableView: UITableView!
 
@@ -43,7 +43,7 @@ class SearchViewController: ViewController {
             }
         }
     }
-    
+
     private func searchUI() {
         tableView.register(SearchCell.self)
         searchController.searchResultsUpdater = self

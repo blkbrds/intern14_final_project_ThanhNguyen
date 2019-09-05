@@ -34,6 +34,7 @@ final class HomeViewController: ViewController {
         getDataBolero()
         getDataNhacXuan()
         getDataNhacVang()
+        getDataTrending()
     }
 
     // MARK: Private func
@@ -62,7 +63,6 @@ final class HomeViewController: ViewController {
             switch result {
             case .success:
                 this.tableView.reloadData()
-//                this.tableView.reloadSections(IndexSet(integer: HomeViewModel.SectionType.bolero.rawValue), with: .none)
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
@@ -75,7 +75,18 @@ final class HomeViewController: ViewController {
             switch result {
             case .success:
                 this.tableView.reloadData()
-//                this.tableView.reloadSections(IndexSet(integer: HomeViewModel.SectionType.nhacXuan.rawValue), with: .none)
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
+
+    private func getDataTrending() {
+        viewModel.getDataTrending { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
@@ -88,7 +99,6 @@ final class HomeViewController: ViewController {
             switch result {
             case .success:
                 this.tableView.reloadData()
-//                this.tableView.reloadSections(IndexSet(integer: HomeViewModel.SectionType.nhacVang.rawValue), with: .none)
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
@@ -96,8 +106,8 @@ final class HomeViewController: ViewController {
     }
 }
 
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDataSource
+extension HomeViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
     }
@@ -129,6 +139,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch sectionType {
         case .trending:
             let cell = tableView.dequeue(HeaderCell.self)
+            cell.viewModel = viewModel.getTrendingCellModel()
+            cell.delegate = self
             return cell
         case .channel:
             let cell = tableView.dequeue(ChannelCell.self)
@@ -136,15 +148,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .bolero:
             let cell = tableView.dequeue(KindCell.self)
-            cell.viewModel = viewModel.getBoleroCellModel(at: indexPath)
+            cell.viewModel = viewModel.getBoleroCellModel()
+            cell.delegate = self
             return cell
         case .nhacXuan:
             let cell = tableView.dequeue(KindCell.self)
-            cell.viewModel = viewModel.getNhacXuanCellModel(at: indexPath)
+            cell.viewModel = viewModel.getNhacXuanCellModel()
+            cell.delegate = self
             return cell
         case .nhacVang:
             let cell = tableView.dequeue(KindCell.self)
-            cell.viewModel = viewModel.getNhacVangCellModel(at: indexPath)
+            cell.viewModel = viewModel.getNhacVangCellModel()
+            cell.delegate = self
             return cell
         }
     }
@@ -164,6 +179,43 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == viewModel.channelResult.items.count - 3 {
             getDataChannel()
+        }
+    }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ProfileViewController()
+        vc.viewModel = ProfileViewModel(id: viewModel.channelResult.items[indexPath.row].id)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension HomeViewController: HeaderCellDelegate {
+    func cell(_ view: HeaderCell, needPerformAction action: HeaderCell.Action) {
+        switch action {
+        case .didSelectItem(let index):
+            let vc = ProfileViewController()
+            vc.viewModel = ProfileViewModel(id: viewModel.trendingResult.items[index].id)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}
+
+extension HomeViewController: KindCellDelegate {
+    func cell(_ view: KindCell, needPerformAction action: KindCell.Action, needType type: KindCellViewModel.KindType) {
+        switch action {
+        case .didSelectItem(let index):
+            let vc = ProfileViewController()
+            switch type {
+            case .bolero:
+                vc.viewModel = ProfileViewModel(id: viewModel.boleroResult.items[index].id)
+            case .nhacXuan:
+                vc.viewModel = ProfileViewModel(id: viewModel.xuanResult.items[index].id)
+            case .nhacVang:
+                vc.viewModel = ProfileViewModel(id: viewModel.vangResult.items[index].id)
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

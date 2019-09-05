@@ -14,14 +14,17 @@ final class HomeViewModel: MVVM.ViewModel {
 
     // MARK: - Propeties
     // Dùng chung 1 API với Search
+    var trendingResult: SearchResult = SearchResult()
     var channelResult: SearchResult = SearchResult()
     var boleroResult: SearchResult = SearchResult()
     var xuanResult: SearchResult = SearchResult()
     var vangResult: SearchResult = SearchResult()
-    var token = ""
+
+    var tokenChannel = ""
     var tokenBolero = ""
     var tokenNhacXuan = ""
     var tokenNhacVang = ""
+    var tokenTrending = ""
 
     enum SectionType: Int, CaseIterable {
         case trending
@@ -48,12 +51,27 @@ final class HomeViewModel: MVVM.ViewModel {
 
     // MARK: - Public func
 
+    func getDataTrending(completion: @escaping APICompletion) {
+        Api.Search.getSearchResult(pageToken: tokenTrending, maxResults: 5, keyword: "trending") { result in
+            switch result {
+            case .success(let trendingResult):
+                self.tokenTrending = trendingResult.nextPageToken
+                for video in trendingResult.items {
+                    self.trendingResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     // MARK: - GetData for Channel
     func getDataChannel(completion: @escaping APICompletion) {
-        Api.Channel.getSearchResult(pageToken: token, maxResults: 20, keyword: "karaoke") { result in
+        Api.Channel.getSearchResult(pageToken: tokenChannel, maxResults: 20, keyword: "karaoke") { result in
             switch result {
             case .success(let channelResult):
-                self.token = channelResult.nextPageToken
+                self.tokenChannel = channelResult.nextPageToken
                 for video in channelResult.items {
                     self.channelResult.items.append(video)
                 }
@@ -129,15 +147,19 @@ final class HomeViewModel: MVVM.ViewModel {
                                     channelDescriptionText: channelResult.items[indexPath.row].description)
     }
 
-    func getBoleroCellModel(at indexPath: IndexPath) -> KindCellViewModel {
+    func getTrendingCellModel() -> HeaderCellViewModel {
+        return HeaderCellViewModel(headerResult: trendingResult)
+    }
+
+    func getBoleroCellModel() -> KindCellViewModel {
         return KindCellViewModel(kindType: .bolero, bolero: boleroResult)
     }
 
-    func getNhacXuanCellModel(at indexPath: IndexPath) -> KindCellViewModel {
+    func getNhacXuanCellModel() -> KindCellViewModel {
         return KindCellViewModel(kindType: .nhacXuan, xuan: xuanResult)
     }
 
-    func getNhacVangCellModel(at indexPath: IndexPath) -> KindCellViewModel {
+    func getNhacVangCellModel() -> KindCellViewModel {
         return KindCellViewModel(kindType: .nhacVang, vang: vangResult)
     }
 }

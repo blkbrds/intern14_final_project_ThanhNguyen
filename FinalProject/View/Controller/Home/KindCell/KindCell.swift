@@ -9,7 +9,17 @@
 import UIKit
 import SwiftUtils
 
+// MARK: Delegate
+protocol KindCellDelegate: class {
+    func cell(_ view: KindCell, needPerformAction action: KindCell.Action, needType type: KindCellViewModel.KindType)
+}
+
 final class KindCell: UITableViewCell {
+
+    enum Action {
+        case didSelectItem(Int)
+    }
+
     // MARK: - Outlets
     @IBOutlet private weak var collectionView: CollectionView!
 
@@ -19,6 +29,7 @@ final class KindCell: UITableViewCell {
             collectionView.reloadData()
         }
     }
+    weak var delegate: KindCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,8 +44,8 @@ final class KindCell: UITableViewCell {
     }
 }
 
-// MARK: - CollectionView Delegate, DataSource
-extension KindCell: UICollectionViewDelegate, UICollectionViewDataSource {
+// MARK: - CollectionView DataSource
+extension KindCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfItems()
     }
@@ -59,5 +70,11 @@ extension KindCell: UICollectionViewDelegate, UICollectionViewDataSource {
 extension KindCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 60)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let delegate = delegate {
+            delegate.cell(self, needPerformAction: .didSelectItem(indexPath.row), needType: viewModel.kindType)
+        }
     }
 }

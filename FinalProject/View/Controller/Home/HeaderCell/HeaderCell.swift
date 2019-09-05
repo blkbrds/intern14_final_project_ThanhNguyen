@@ -9,14 +9,28 @@
 import UIKit
 import SwiftUtils
 
+// MARK: Delegate
+protocol HeaderCellDelegate: class {
+    func cell(_ view: HeaderCell, needPerformAction action: HeaderCell.Action)
+}
+
 final class HeaderCell: TableCell {
+
+    enum Action {
+        case didSelectItem(Int)
+    }
 
     // MARK: - Outlets
     @IBOutlet private weak var collectionView: CollectionView!
     @IBOutlet private weak var pageControlView: UIPageControl!
 
     // MARK: - Propeties
-    var viewModel = HeaderCellViewModel()
+    var viewModel = HeaderCellViewModel() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    weak var delegate: HeaderCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,20 +38,6 @@ final class HeaderCell: TableCell {
         configUI()
         collectionView.dataSource = self
         collectionView.delegate = self
-        getData()
-    }
-
-    // MARK: Get API
-    private func getData() {
-        viewModel.getData { [weak self] result in
-            guard let this = self else { return }
-            switch result {
-            case .success:
-                this.collectionView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
     }
 
     private func configUI() {
@@ -47,14 +47,14 @@ final class HeaderCell: TableCell {
 }
 
 // MARK: UICollectionViewDelegate, UICollectionViewDataSource
-extension HeaderCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HeaderCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfItemsInSection()
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(HeaderCollectionCell.self, forIndexPath: indexPath)
-        cell.viewModel = viewModel.getHeaderCellModel(at: indexPath)
+        cell.viewModel = viewModel.getTrendingCellModel(at: indexPath)
         return cell
     }
 }
@@ -71,5 +71,11 @@ extension HeaderCell: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let delegate = delegate {
+            delegate.cell(self, needPerformAction: .didSelectItem(indexPath.row))
+        }
     }
 }

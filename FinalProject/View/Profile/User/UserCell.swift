@@ -7,21 +7,26 @@
 //
 
 import UIKit
+import SDWebImage
 
-final class UserCell: UITableViewCell {
+final class UserCell: TableCell {
+    // MARK: - Outlets
     @IBOutlet private weak var userImage: ImageView!
     @IBOutlet private weak var userNameLabel: Label!
     @IBOutlet private weak var dateCommentLabel: Label!
     @IBOutlet private weak var commentLabel: Label!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var viewModel: UserCellViewModel? {
+        didSet {
+            updateView()
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    private func updateView() {
+        guard let viewModel = viewModel else { return }
+        userImage.sd_setImage(with: URL(string: viewModel.userImageURL), placeholderImage: #imageLiteral(resourceName: "ic-youtube"))
+        userNameLabel.text = viewModel.userName
+        dateCommentLabel.text = viewModel.dateComment
+        commentLabel.text = viewModel.commentLabel
     }
 }

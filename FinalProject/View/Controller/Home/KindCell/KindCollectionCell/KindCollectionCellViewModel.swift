@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import MVVM
 
-final class KindCollectionCellViewModel {
+final class KindCollectionCellViewModel: MVVM.ViewModel {
     var imageURL: String = ""
     var kindLabel: String = ""
 

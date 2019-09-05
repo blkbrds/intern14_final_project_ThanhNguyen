@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 
 final class SearchCell: TableCell {
+    // MARK: - Outlets
     @IBOutlet private weak var videoImage: ImageView!
     @IBOutlet private weak var videoNameLabel: Label!
     @IBOutlet private weak var channelNameLabel: Label!

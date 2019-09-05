@@ -140,7 +140,7 @@
                 <outlet property="dislikeLabel" destination="5b2-Ti-f3D" id="vdn-wW-Gmd"/>
                 <outlet property="imageChannel" destination="ews-Vm-i1B" id="Ah9-K7-27a"/>
                 <outlet property="likeLabel" destination="zq9-Id-g4h" id="LEX-bK-3g6"/>
-                <outlet property="viewLabel" destination="NYL-hT-ud2" id="Um0-0u-qrS"/>
+                <outlet property="viewsLabel" destination="NYL-hT-ud2" id="Um0-0u-qrS"/>
             </connections>
             <point key="canvasLocation" x="388.40579710144931" y="92.745535714285708"/>
         </tableViewCell>

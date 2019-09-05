@@ -7,18 +7,18 @@
 //
 
 import Foundation
-import UIKit
+import MVVM
 
-final class InformationCellViewModel {
-    var videoNameLabel: String = ""
-    var kindNameLabel: String = ""
-    var creatorNameLabel: String = ""
-    var trendNameLabel: String = ""
+final class InformationCellViewModel: MVVM.ViewModel {
+    var videoName: String = ""
+    var kindName: String = ""
+    var creatorName: String = ""
+    var trendName: String = ""
 
     init(videoNameLabel: String, kindNameLabel: String, creatorNameLabel: String, trendNameLabel: String) {
-        self.videoNameLabel = videoNameLabel
-        self.kindNameLabel = kindNameLabel
-        self.creatorNameLabel = creatorNameLabel
-        self.trendNameLabel = trendNameLabel
+        self.videoName = videoNameLabel
+        self.kindName = kindNameLabel
+        self.creatorName = creatorNameLabel
+        self.trendName = trendNameLabel
     }
 }

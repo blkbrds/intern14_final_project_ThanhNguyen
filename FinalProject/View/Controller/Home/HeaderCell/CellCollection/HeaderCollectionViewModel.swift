@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import MVVM
 
-final class HeaderCollectionViewModel {
+final class HeaderCollectionViewModel: MVVM.ViewModel {
     var imageURL: String = ""
     var headerName: String = ""
 

@@ -7,24 +7,30 @@
 //
 
 import UIKit
+import SDWebImage
 
-class ProfileChannelCell: UITableViewCell {
+final class ProfileChannelCell: TableCell {
 
-    @IBOutlet weak var imageChannel: ImageView!
-    @IBOutlet weak var channelLabel: Label!
-    @IBOutlet weak var dateLabel: Label!
-    @IBOutlet weak var viewLabel: Label!
-    @IBOutlet weak var likeLabel: Label!
-    @IBOutlet weak var dislikeLabel: Label!
+    @IBOutlet private weak var imageChannel: ImageView!
+    @IBOutlet private weak var channelLabel: Label!
+    @IBOutlet private weak var dateLabel: Label!
+    @IBOutlet private weak var viewsLabel: Label!
+    @IBOutlet private weak var likeLabel: Label!
+    @IBOutlet private weak var dislikeLabel: Label!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var viewModel: ProfileCellViewModel? {
+        didSet {
+            updateView()
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    private func updateView() {
+        guard let viewModel = viewModel else { return }
+        imageChannel.sd_setImage(with: URL(string: viewModel.imageChannelURL), placeholderImage: #imageLiteral(resourceName: "ic-youtube"))
+        channelLabel.text = viewModel.channelName
+        dateLabel.text = viewModel.date
+        viewsLabel.text = viewModel.views
+        likeLabel.text = viewModel.like
+        dislikeLabel.text = viewModel.dislike
     }
 }
