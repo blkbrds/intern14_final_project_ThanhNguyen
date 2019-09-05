@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-final class SearchCell: UITableViewCell {
+final class SearchCell: TableCell {
     @IBOutlet private weak var videoImage: ImageView!
     @IBOutlet private weak var videoNameLabel: Label!
     @IBOutlet private weak var channelNameLabel: Label!

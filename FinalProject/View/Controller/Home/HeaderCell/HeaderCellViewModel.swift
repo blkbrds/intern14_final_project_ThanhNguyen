@@ -11,17 +11,33 @@ import UIKit
 import SwiftUtils
 
 final class HeaderCellViewModel {
-    var data: [UIImage] = [#imageLiteral(resourceName: "ic-sun"), #imageLiteral(resourceName: "ic-mercury"), #imageLiteral(resourceName: "ic-saturn"), #imageLiteral(resourceName: "ic-earth"), #imageLiteral(resourceName: "ic-asteroidBelt"), #imageLiteral(resourceName: "ic-nepturn"), #imageLiteral(resourceName: "ic-jupiter"), #imageLiteral(resourceName: "ic-venus")]
+    // MARK: - Propeties
+    var headerResult: SearchResult = SearchResult()
+    var token = ""
 
-    func numberOfItemsInSection() -> Int {
-        return data.count
+    // MARK: - Public func
+
+    func getData(completion: @escaping APICompletion) {
+        Api.Search.getSearchResult(pageToken: token, maxResults: 5, keyword: "trending") { result in
+            switch result {
+            case .success(let headerResult):
+                self.token = headerResult.nextPageToken
+                for video in headerResult.items {
+                    self.headerResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 
-    func cellForItemAt(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeue(HeaderCollectionCell.self, forIndexPath: indexPath)
-        let image = data[indexPath.row]
-        cell.viewModel = HeaderCollectionViewModel(image: image, headerName: "asdfasdfasdfasdf")
-        return cell
+    func numberOfItemsInSection() -> Int {
+        return headerResult.items.count
+    }
+
+    func getHeaderCellModel(at indexPath: IndexPath) -> HeaderCollectionViewModel {
+        return HeaderCollectionViewModel(imageURL: headerResult.items[indexPath.row].thumbnailURL, headerName: headerResult.items[indexPath.row].titleVideo)
     }
 
     func collectionViewLayout() -> CGSize {

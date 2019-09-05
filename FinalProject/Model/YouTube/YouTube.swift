@@ -16,6 +16,7 @@ import ObjectMapper
     @objc dynamic var thumbnailURL = ""
     @objc dynamic var publishedAt = ""
     @objc dynamic var channelTitle = ""
+    @objc dynamic var description = ""
 
     init() { }
 
@@ -27,5 +28,6 @@ import ObjectMapper
         thumbnailURL <- map["snippet.thumbnails.high.url"]
         publishedAt <- map["snippet.publishedAt"]
         channelTitle <- map["snippet.channelTitle"]
+        description <- map["snippet.description"]
     }
 }

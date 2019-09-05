@@ -43,6 +43,7 @@ class SearchViewController: ViewController {
             }
         }
     }
+    
     private func searchUI() {
         tableView.register(SearchCell.self)
         searchController.searchResultsUpdater = self

@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import UIKit
 
 final class HeaderCollectionViewModel {
-    var image: UIImage = #imageLiteral(resourceName: "ic-youtube")
+    var imageURL: String = ""
     var headerName: String = ""
 
-    init(image: UIImage, headerName: String) {
-        self.image = image
+    init(imageURL: String, headerName: String) {
+        self.imageURL = imageURL
         self.headerName = headerName
     }
 }

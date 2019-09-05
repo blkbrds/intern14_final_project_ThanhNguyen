@@ -41,6 +41,8 @@ final class HomeViewModel: MVVM.ViewModel {
     }
 
     // MARK: - Public func
+
+    // MARK: - GetData for Channel
     func getData(completion: @escaping APICompletion) {
         Api.Channel.getSearchResult(pageToken: token, maxResults: 20, keyword: "karaoke") { result in
             switch result {
@@ -73,7 +75,7 @@ final class HomeViewModel: MVVM.ViewModel {
     func getChannelCellModel(at indexPath: IndexPath) -> ChannelCellViewModel {
         return ChannelCellViewModel(channelImageURL: channelResult.items[indexPath.row].thumbnailURL,
                                     channelName: channelResult.items[indexPath.row].channelTitle,
-                                    channelDescriptionText: channelResult.items[indexPath.row].publishedAt)
+                                    channelDescriptionText: channelResult.items[indexPath.row].description)
     }
 
     func heightForRowAt(at indexPath: IndexPath) -> CGFloat {

@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUtils
 
-final class HeaderCell: UITableViewCell {
+final class HeaderCell: TableCell {
 
     // MARK: - Outlets
     @IBOutlet private weak var collectionView: CollectionView!
@@ -22,15 +22,28 @@ final class HeaderCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        collectionView.register(HeaderCollectionCell.self)
+        configUI()
         collectionView.dataSource = self
         collectionView.delegate = self
-
-        pageControlView.numberOfPages = viewModel.data.count
+        getData()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    // MARK: Get API
+    private func getData() {
+        viewModel.getData { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.collectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    private func configUI() {
+        collectionView.register(HeaderCollectionCell.self)
+        pageControlView.numberOfPages = 5
     }
 }
 
@@ -41,7 +54,9 @@ extension HeaderCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return viewModel.cellForItemAt(collectionView, at: indexPath)
+        let cell = collectionView.dequeue(HeaderCollectionCell.self, forIndexPath: indexPath)
+        cell.viewModel = viewModel.getHeaderCellModel(at: indexPath)
+        return cell
     }
 }
 

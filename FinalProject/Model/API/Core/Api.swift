@@ -16,7 +16,7 @@ final class Api {
     }
 
     struct Search {}
-    
+
     struct Channel {}
 }
 

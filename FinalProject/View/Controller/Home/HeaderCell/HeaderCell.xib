@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Wo9-Aq-Dwb" customClass="CollectionView" customModule="FinalProject" customModuleProvider="target">
-                        <rect key="frame" x="20" y="55" width="862" height="245"/>
+                        <rect key="frame" x="20" y="11" width="862" height="323"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="F0L-p8-HQk">
                             <size key="itemSize" width="50" height="50"/>
@@ -30,7 +30,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="3Qc-so-OoE">
-                        <rect key="frame" x="326" y="253" width="250" height="37"/>
+                        <rect key="frame" x="326" y="287" width="250" height="37"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="250" id="FBG-Fx-8gk"/>
                             <constraint firstAttribute="height" constant="37" id="Kdc-wb-O0T"/>

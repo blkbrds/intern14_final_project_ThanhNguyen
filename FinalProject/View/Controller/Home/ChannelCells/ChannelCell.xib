@@ -26,16 +26,16 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Y2c-tx-FV0">
-                        <rect key="frame" x="199.5" y="3" width="357.5" height="193.5"/>
+                        <rect key="frame" x="199.5" y="5" width="362.5" height="189.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij3-PI-6qQ" customClass="Label" customModule="FinalProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="357.5" height="92"/>
+                                <rect key="frame" x="0.0" y="0.0" width="362.5" height="90"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHu-Qu-4aE" customClass="Label" customModule="FinalProject" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="102" width="357.5" height="91.5"/>
+                                <rect key="frame" x="0.0" y="100" width="362.5" height="89.5"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="»" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiK-rZ-nE5" customClass="Label" customModule="FinalProject" customModuleProvider="target">
-                        <rect key="frame" x="557" y="94.5" width="11" height="11"/>
+                        <rect key="frame" x="562" y="94.5" width="11" height="11"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="11" id="chW-Wp-7pN"/>
                             <constraint firstAttribute="width" constant="11" id="ezc-wy-SfK"/>
@@ -59,10 +59,10 @@
                     <constraint firstItem="Cup-zs-rsz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="JWg-Hv-pU1"/>
                     <constraint firstItem="UiK-rZ-nE5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LXF-6N-S9j"/>
                     <constraint firstAttribute="bottom" secondItem="Cup-zs-rsz" secondAttribute="bottom" constant="3" id="RVE-54-dBD"/>
-                    <constraint firstItem="Y2c-tx-FV0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="Rh0-co-7nD"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="UiK-rZ-nE5" secondAttribute="trailing" constant="5" id="hcV-Ix-ZeN"/>
+                    <constraint firstItem="Y2c-tx-FV0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Rh0-co-7nD"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="UiK-rZ-nE5" secondAttribute="trailing" id="hcV-Ix-ZeN"/>
                     <constraint firstItem="Cup-zs-rsz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="uKK-Zo-ZrP"/>
-                    <constraint firstAttribute="bottom" secondItem="Y2c-tx-FV0" secondAttribute="bottom" constant="3" id="yKS-4L-XvB"/>
+                    <constraint firstAttribute="bottom" secondItem="Y2c-tx-FV0" secondAttribute="bottom" constant="5" id="yKS-4L-XvB"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class HeaderCollectionCell: UICollectionViewCell {
     // MARK: - Outlets
-    @IBOutlet weak var headerImage: ImageView!
-    @IBOutlet weak var headerNameLabel: Label!
+    @IBOutlet private weak var headerImage: ImageView!
+    @IBOutlet private weak var headerNameLabel: Label!
 
     var viewModel: HeaderCollectionViewModel? {
         didSet {
@@ -25,7 +26,7 @@ final class HeaderCollectionCell: UICollectionViewCell {
 
     private func updateView() {
         guard let viewModel = viewModel else { return }
-        headerImage.image = viewModel.image
+        headerImage.sd_setImage(with: URL(string: viewModel.imageURL), placeholderImage: #imageLiteral(resourceName: "ic-youtube"))
         headerNameLabel.text = viewModel.headerName
     }
 }
