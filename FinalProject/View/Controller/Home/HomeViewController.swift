@@ -30,7 +30,10 @@ final class HomeViewController: ViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getData()
+        getDataChannel()
+        getDataBolero()
+        getDataNhacXuan()
+        getDataNhacVang()
     }
 
     // MARK: Private func
@@ -41,12 +44,51 @@ final class HomeViewController: ViewController {
         tableView.register(HomeSectionHeaderView.self)
     }
 
-    private func getData() {
-        viewModel.getData { [weak self] result in
+    private func getDataChannel() {
+        viewModel.getDataChannel { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success:
                 this.tableView.reloadData()
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
+
+    private func getDataBolero() {
+        viewModel.getDataBolero { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+//                this.tableView.reloadSections(IndexSet(integer: HomeViewModel.SectionType.bolero.rawValue), with: .none)
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
+
+    private func getDataNhacXuan() {
+        viewModel.getDataNhacXuan { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+//                this.tableView.reloadSections(IndexSet(integer: HomeViewModel.SectionType.nhacXuan.rawValue), with: .none)
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
+
+    private func getDataNhacVang() {
+        viewModel.getDataNhacVang { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+//                this.tableView.reloadSections(IndexSet(integer: HomeViewModel.SectionType.nhacVang.rawValue), with: .none)
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
@@ -73,11 +115,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return viewModel.heightForHeaderInSection(at: section)
+        guard let sectionType = HomeViewModel.SectionType(rawValue: section) else { return 0 }
+        switch sectionType {
+        case .trending:
+            return 0
+        default:
+            return 20
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionType = HomeViewModel.SectionType(rawValue: indexPath.section) else { return UITableViewCell() }
+
         switch sectionType {
         case .trending:
             let cell = tableView.dequeue(HeaderCell.self)
@@ -86,19 +135,36 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeue(ChannelCell.self)
             cell.viewModel = viewModel.getChannelCellModel(at: indexPath)
             return cell
-        default:
+        case .bolero:
             let cell = tableView.dequeue(KindCell.self)
+            cell.viewModel = viewModel.getBoleroCellModel(at: indexPath)
+            return cell
+        case .nhacXuan:
+            let cell = tableView.dequeue(KindCell.self)
+            cell.viewModel = viewModel.getNhacXuanCellModel(at: indexPath)
+            return cell
+        case .nhacVang:
+            let cell = tableView.dequeue(KindCell.self)
+            cell.viewModel = viewModel.getNhacVangCellModel(at: indexPath)
             return cell
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return viewModel.heightForRowAt(at: indexPath)
+        guard let sectionType = HomeViewModel.SectionType(rawValue: indexPath.section) else { return 0 }
+        switch sectionType {
+        case .trending:
+            return 200
+        case .channel:
+            return 100
+        default:
+            return 80
+        }
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == viewModel.channelResult.items.count - 3 {
-            getData()
+            getDataChannel()
         }
     }
 }

@@ -8,19 +8,54 @@
 
 import Foundation
 import SwiftUtils
+import MVVM
 
-final class KindCellViewModel {
-    // MARK: - Propeties
-    var data: [UIImage] = [#imageLiteral(resourceName: "ic-sun"), #imageLiteral(resourceName: "ic-mercury"), #imageLiteral(resourceName: "ic-saturn"), #imageLiteral(resourceName: "ic-earth"), #imageLiteral(resourceName: "ic-asteroidBelt"), #imageLiteral(resourceName: "ic-nepturn"), #imageLiteral(resourceName: "ic-jupiter"), #imageLiteral(resourceName: "ic-venus")]
+final class KindCellViewModel: MVVM.ViewModel {
 
-    func cellForItemAt(_ collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeue(KindCollectionCell.self, forIndexPath: indexPath)
-        let image = data[indexPath.row]
-        cell.viewModel = KindCollectionCellViewModel(image: image, kindLabel: "aasdfasdf")
-        return cell
+    enum KindType: Int, CaseIterable {
+        case bolero
+        case nhacXuan
+        case nhacVang
     }
 
-    func sizeForItemAt() -> CGSize {
-        return CGSize(width: 100, height: 60)
+    // MARK: - Propeties
+    var boleroResult: SearchResult
+    var xuanResult: SearchResult
+    var vangResult: SearchResult
+    var kindType: KindType = .bolero
+
+    init(kindType: KindType = .bolero, bolero: SearchResult = SearchResult(), xuan: SearchResult = SearchResult(), vang: SearchResult = SearchResult()) {
+        self.kindType = kindType
+        self.boleroResult = bolero
+        self.xuanResult = xuan
+        self.vangResult = vang
+    }
+
+    // MARK: - Public func
+
+    func getBoleroCellModel(at indexPath: IndexPath) -> KindCollectionCellViewModel {
+        return KindCollectionCellViewModel(imageURL: boleroResult.items[indexPath.row].thumbnailURL,
+                                           kindLabel: boleroResult.items[indexPath.row].titleVideo)
+    }
+
+    func getNhacXuanCellModel(at indexPath: IndexPath) -> KindCollectionCellViewModel {
+        return KindCollectionCellViewModel(imageURL: xuanResult.items[indexPath.row].thumbnailURL,
+                                           kindLabel: xuanResult.items[indexPath.row].titleVideo)
+    }
+
+    func getNhacVangCellModel(at indexPath: IndexPath) -> KindCollectionCellViewModel {
+        return KindCollectionCellViewModel(imageURL: vangResult.items[indexPath.row].thumbnailURL,
+                                           kindLabel: vangResult.items[indexPath.row].titleVideo)
+    }
+
+    func numberOfItems(inSection section: Int) -> Int {
+        switch kindType {
+        case .bolero:
+            return boleroResult.items.count
+        case .nhacXuan:
+            return xuanResult.items.count
+        case .nhacVang:
+            return vangResult.items.count
+        }
     }
 }

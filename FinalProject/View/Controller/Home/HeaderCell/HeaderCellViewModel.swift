@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUtils
 
 final class HeaderCellViewModel {
@@ -16,7 +15,6 @@ final class HeaderCellViewModel {
     var token = ""
 
     // MARK: - Public func
-
     func getData(completion: @escaping APICompletion) {
         Api.Search.getSearchResult(pageToken: token, maxResults: 5, keyword: "trending") { result in
             switch result {
@@ -38,17 +36,5 @@ final class HeaderCellViewModel {
 
     func getHeaderCellModel(at indexPath: IndexPath) -> HeaderCollectionViewModel {
         return HeaderCollectionViewModel(imageURL: headerResult.items[indexPath.row].thumbnailURL, headerName: headerResult.items[indexPath.row].titleVideo)
-    }
-
-    func collectionViewLayout() -> CGSize {
-        return CGSize(width: kScreenSize.width, height: 200)
-    }
-
-    func collectionViewLayout() -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-
-    func collectionViewLayout() -> CGFloat {
-        return 0.0
     }
 }

@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class KindCollectionCell: UICollectionViewCell {
     // MARK: - Outlets
-    @IBOutlet weak var kindImage: ImageView!
-    @IBOutlet weak var kindLabel: Label!
+    @IBOutlet private weak var kindImage: ImageView!
+    @IBOutlet private weak var kindLabel: Label!
 
     var viewModel: KindCollectionCellViewModel? {
         didSet {
@@ -25,7 +26,7 @@ final class KindCollectionCell: UICollectionViewCell {
 
     func updateCell() {
         guard let viewModel = viewModel else { return }
-        kindImage.image = viewModel.image
+        kindImage.sd_setImage(with: URL(string: viewModel.imageURL), placeholderImage: #imageLiteral(resourceName: "ic-youtube"))
         kindLabel.text = viewModel.kindLabel
     }
 }

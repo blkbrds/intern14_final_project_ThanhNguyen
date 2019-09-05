@@ -17,8 +17,8 @@ extension Api.Channel {
         var keyword: String
 
         func toURL() -> String {
-            let key = "AIzaSyDIJ9UssMoN9IfR9KnTc4lb3B9NtHpRF"
-            return Api.Path.Search.url + "?pageToken=\(pageToken)&part=snippet&" + "maxResults=\(maxResults)&order=relevance&" + "q=\(keyword)&" + "key=\(key)-c"
+            let key = "AIzaSyDIJ9UssMoN9IfR9KnTc4lb3B9NtHpRF-c"
+            return Api.Path.Search.url + "?pageToken=\(pageToken)&part=snippet&" + "maxResults=\(maxResults)&order=relevance&" + "q=\(keyword)&" + "key=\(key)"
         }
     }
 

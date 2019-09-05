@@ -18,7 +18,6 @@ final class HeaderCell: TableCell {
     // MARK: - Propeties
     var viewModel = HeaderCellViewModel()
 
-    // MARK: LifeCycle
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -63,18 +62,14 @@ extension HeaderCell: UICollectionViewDelegate, UICollectionViewDataSource {
 // MARK: - CollectionView Delegate FlowLayout
 extension HeaderCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return viewModel.collectionViewLayout()
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return viewModel.collectionViewLayout()
+        return CGSize(width: kScreenSize.width, height: 200)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return viewModel.collectionViewLayout()
+        return 10
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return viewModel.collectionViewLayout()
+        return 10
     }
 }

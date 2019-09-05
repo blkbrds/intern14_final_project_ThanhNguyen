@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import UIKit
 
 final class KindCollectionCellViewModel {
-    var image: UIImage = #imageLiteral(resourceName: "ic-youtube")
+    var imageURL: String = ""
     var kindLabel: String = ""
 
-    init(image: UIImage, kindLabel: String) {
-        self.image = image
+    init(imageURL: String, kindLabel: String) {
+        self.imageURL = imageURL
         self.kindLabel = kindLabel
     }
 }

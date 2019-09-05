@@ -15,7 +15,13 @@ final class HomeViewModel: MVVM.ViewModel {
     // MARK: - Propeties
     // Dùng chung 1 API với Search
     var channelResult: SearchResult = SearchResult()
+    var boleroResult: SearchResult = SearchResult()
+    var xuanResult: SearchResult = SearchResult()
+    var vangResult: SearchResult = SearchResult()
     var token = ""
+    var tokenBolero = ""
+    var tokenNhacXuan = ""
+    var tokenNhacVang = ""
 
     enum SectionType: Int, CaseIterable {
         case trending
@@ -43,13 +49,58 @@ final class HomeViewModel: MVVM.ViewModel {
     // MARK: - Public func
 
     // MARK: - GetData for Channel
-    func getData(completion: @escaping APICompletion) {
+    func getDataChannel(completion: @escaping APICompletion) {
         Api.Channel.getSearchResult(pageToken: token, maxResults: 20, keyword: "karaoke") { result in
             switch result {
             case .success(let channelResult):
                 self.token = channelResult.nextPageToken
                 for video in channelResult.items {
                     self.channelResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func getDataBolero(completion: @escaping APICompletion) {
+        Api.Channel.getSearchResult(pageToken: tokenBolero, maxResults: 10, keyword: "bolero") { result in
+            switch result {
+            case .success(let boleroResult):
+                self.tokenBolero = boleroResult.nextPageToken
+                for video in boleroResult.items {
+                    self.boleroResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func getDataNhacXuan(completion: @escaping APICompletion) {
+        Api.Channel.getSearchResult(pageToken: tokenNhacXuan, maxResults: 10, keyword: "nhacxuan") { result in
+            switch result {
+            case .success(let xuanResult):
+                self.tokenNhacXuan = xuanResult.nextPageToken
+                for video in xuanResult.items {
+                    self.xuanResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func getDataNhacVang(completion: @escaping APICompletion) {
+        Api.Channel.getSearchResult(pageToken: tokenNhacVang, maxResults: 10, keyword: "nhacvang") { result in
+            switch result {
+            case .success(let vangResult):
+                self.tokenNhacVang = vangResult.nextPageToken
+                for video in vangResult.items {
+                    self.vangResult.items.append(video)
                 }
                 completion(.success)
             case .failure(let error):
@@ -78,25 +129,15 @@ final class HomeViewModel: MVVM.ViewModel {
                                     channelDescriptionText: channelResult.items[indexPath.row].description)
     }
 
-    func heightForRowAt(at indexPath: IndexPath) -> CGFloat {
-        guard let sectionType = SectionType(rawValue: indexPath.section) else { return 0 }
-        switch sectionType {
-        case .trending:
-            return 200
-        case .channel:
-            return 100
-        default:
-            return 80
-        }
+    func getBoleroCellModel(at indexPath: IndexPath) -> KindCellViewModel {
+        return KindCellViewModel(kindType: .bolero, bolero: boleroResult)
     }
 
-    func heightForHeaderInSection(at section: Int) -> CGFloat {
-        guard let sectionType = SectionType(rawValue: section) else { return 0 }
-        switch sectionType {
-        case .trending:
-            return 0
-        default:
-            return 20
-        }
+    func getNhacXuanCellModel(at indexPath: IndexPath) -> KindCellViewModel {
+        return KindCellViewModel(kindType: .nhacXuan, xuan: xuanResult)
+    }
+
+    func getNhacVangCellModel(at indexPath: IndexPath) -> KindCellViewModel {
+        return KindCellViewModel(kindType: .nhacVang, vang: vangResult)
     }
 }
