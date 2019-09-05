@@ -36,7 +36,7 @@ final class KindCell: UITableViewCell {
 // MARK: - CollectionView Delegate, DataSource
 extension KindCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfItems(inSection: section)
+        return viewModel.numberOfItems()
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

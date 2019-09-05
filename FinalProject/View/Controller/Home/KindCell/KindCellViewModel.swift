@@ -48,7 +48,7 @@ final class KindCellViewModel: MVVM.ViewModel {
                                            kindLabel: vangResult.items[indexPath.row].titleVideo)
     }
 
-    func numberOfItems(inSection section: Int) -> Int {
+    func numberOfItems() -> Int {
         switch kindType {
         case .bolero:
             return boleroResult.items.count

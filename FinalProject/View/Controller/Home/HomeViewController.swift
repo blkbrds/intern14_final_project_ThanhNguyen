@@ -98,7 +98,6 @@ final class HomeViewController: ViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
     }
