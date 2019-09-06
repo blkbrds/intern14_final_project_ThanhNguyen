@@ -186,7 +186,7 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ProfileViewController()
-        vc.viewModel = ProfileViewModel(id: viewModel.channelResult.items[indexPath.row].id)
+        vc.viewModel = ProfileViewModel(video: viewModel.channelResult.items[indexPath.row])
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -196,7 +196,7 @@ extension HomeViewController: HeaderCellDelegate {
         switch action {
         case .didSelectItem(let index):
             let vc = ProfileViewController()
-            vc.viewModel = ProfileViewModel(id: viewModel.trendingResult.items[index].id)
+            vc.viewModel = ProfileViewModel(video: viewModel.trendingResult.items[index])
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -209,11 +209,11 @@ extension HomeViewController: KindCellDelegate {
             let vc = ProfileViewController()
             switch type {
             case .bolero:
-                vc.viewModel = ProfileViewModel(id: viewModel.boleroResult.items[index].id)
+                vc.viewModel = ProfileViewModel(video: viewModel.boleroResult.items[index])
             case .nhacXuan:
-                vc.viewModel = ProfileViewModel(id: viewModel.xuanResult.items[index].id)
+                vc.viewModel = ProfileViewModel(video: viewModel.xuanResult.items[index])
             case .nhacVang:
-                vc.viewModel = ProfileViewModel(id: viewModel.vangResult.items[index].id)
+                vc.viewModel = ProfileViewModel(video: viewModel.vangResult.items[index])
             }
             self.navigationController?.pushViewController(vc, animated: true)
         }

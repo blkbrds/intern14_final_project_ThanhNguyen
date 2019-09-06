@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Realm
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,9 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         configTabbar(controller: .tabbar)
+//        setDefaultRealmForUser()
 
         return true
     }
+
+//    func setDefaultRealmForUser() {
+//        let config = Realm.Configuration()
+//        // Set this as the configuration used for the default Realm
+//        Realm.Configuration.defaultConfiguration = config
+//    }
 
     // MARK: Config Tabbar Controller
     func configTabbar(controller: ViewController) {

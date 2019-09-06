@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import SwiftUtils
+import RealmSwift
 import MVVM
+import SwiftyJSON
 
 final class HomeViewModel: MVVM.ViewModel {
 
@@ -58,6 +59,7 @@ final class HomeViewModel: MVVM.ViewModel {
                 self.tokenTrending = trendingResult.nextPageToken
                 for video in trendingResult.items {
                     self.trendingResult.items.append(video)
+//                    self.writeRealm(jsArray: video)
                 }
                 completion(.success)
             case .failure(let error):
@@ -74,6 +76,7 @@ final class HomeViewModel: MVVM.ViewModel {
                 self.tokenChannel = channelResult.nextPageToken
                 for video in channelResult.items {
                     self.channelResult.items.append(video)
+//                    self.writeRealm(jsArray: video)
                 }
                 completion(.success)
             case .failure(let error):
@@ -89,6 +92,7 @@ final class HomeViewModel: MVVM.ViewModel {
                 self.tokenBolero = boleroResult.nextPageToken
                 for video in boleroResult.items {
                     self.boleroResult.items.append(video)
+//                    self.writeRealm(jsArray: video)
                 }
                 completion(.success)
             case .failure(let error):
@@ -104,6 +108,7 @@ final class HomeViewModel: MVVM.ViewModel {
                 self.tokenNhacXuan = xuanResult.nextPageToken
                 for video in xuanResult.items {
                     self.xuanResult.items.append(video)
+//                    self.writeRealm(jsArray: video)
                 }
                 completion(.success)
             case .failure(let error):
@@ -119,6 +124,7 @@ final class HomeViewModel: MVVM.ViewModel {
                 self.tokenNhacVang = vangResult.nextPageToken
                 for video in vangResult.items {
                     self.vangResult.items.append(video)
+//                    self.writeRealm(jsArray: video)
                 }
                 completion(.success)
             case .failure(let error):

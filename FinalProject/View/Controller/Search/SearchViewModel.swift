@@ -15,11 +15,14 @@ final class SearchViewModel: MVVM.ViewModel {
     var token = ""
     var searchText = ""
 
-    func getData(completion: @escaping APICompletion) {
-        Api.Search.getSearchResult(pageToken: token, maxResults: 10, keyword: searchText) { result in
+    func getData(isLoadMore: Bool, completion: @escaping APICompletion) {
+        Api.Search.getSearchResult(pageToken: token, maxResults: 20, keyword: searchText) { result in
             switch result {
             case .success(let searchResult):
                 self.token = searchResult.nextPageToken
+                if !isLoadMore {
+                    self.searchResult.items.removeAll()
+                }
                 for video in searchResult.items {
                     self.searchResult.items.append(video)
                 }

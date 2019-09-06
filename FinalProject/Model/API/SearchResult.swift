@@ -9,17 +9,19 @@
 import Foundation
 import ObjectMapper
 
-final class SearchResult: Mappable {
+@objcMembers final class SearchResult: Mappable {
 
-    var nextPageToken = ""
-    var prevPageToken = ""
-    var items: [YouTube] = []
+    @objc dynamic var kind = ""
+    @objc dynamic var nextPageToken = ""
+    @objc dynamic var prevPageToken = ""
+    @objc dynamic var items: [YouTube] = []
 
     init() { }
 
     init?(map: Map) {}
 
     func mapping(map: Map) {
+        kind <- map["kind"]
         nextPageToken <- map["nextPageToken"]
         prevPageToken <- map["prevPageToken"]
         items <- map["items"]

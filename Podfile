@@ -9,6 +9,7 @@ target 'FinalProject' do
   # Data
   pod 'ObjectMapper', '3.3.0', :inhibit_warnings => true # Simple JSON Object mapping written in Swift.
   pod 'RealmSwift'
+  pod 'SwiftyJSON', '~> 4.0'
 
   #Download Image
   pod 'SDWebImage', '~> 5.0'

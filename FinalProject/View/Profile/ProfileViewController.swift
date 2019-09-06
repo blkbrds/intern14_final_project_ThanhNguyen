@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUtils
 import YoutubePlayer_in_WKWebView
 
 final class ProfileViewController: ViewController {
@@ -19,17 +20,32 @@ final class ProfileViewController: ViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        button.setImage(#imageLiteral(resourceName: "ic-star"), for: .normal)
+        button.addTarget(self, action: #selector(favoritesButtonDidClick), for: .touchUpInside)
+        let rightButton = UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem = rightButton
+
+        tableView.register(ProfileChannelCell.self)
+
         playerView.load(withVideoId: viewModel.id)
+    }
+
+    @objc private func favoritesButtonDidClick() {
+//        viewModel.changeStateFavorite()
     }
 }
 
 extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeue(ProfileChannelCell.self)
+        cell.viewModel = viewModel.getChannelCellModel(at: indexPath)
+        return cell
     }
 }
 

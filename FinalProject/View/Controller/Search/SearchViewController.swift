@@ -16,25 +16,26 @@ final class SearchViewController: ViewController {
     // MARK: - Propeties
     let searchController = UISearchController(searchResultsController: nil)
     var viewModel = SearchViewModel()
+    var isLoadingApi = false
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "SEARCH"
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        searchUI()
+
+        configUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getData()
+        getData(isLoadMore: false)
     }
 
-    private func getData() {
-        viewModel.getData { [weak self] result in
+    private func getData(isLoadMore: Bool) {
+        isLoadingApi = true
+        viewModel.getData(isLoadMore: isLoadMore) { [weak self] result in
             guard let this = self else { return }
+            this.isLoadingApi = false
             switch result {
             case .success:
                 this.tableView.reloadData()
@@ -44,7 +45,7 @@ final class SearchViewController: ViewController {
         }
     }
 
-    private func searchUI() {
+    private func configUI() {
         tableView.register(SearchCell.self)
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search"
@@ -73,7 +74,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Load More Page
         if indexPath.row == viewModel.searchResult.items.count - 3 {
-            getData()
+            getData(isLoadMore: true)
         }
     }
 }
@@ -81,10 +82,16 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
-        let trimText = String(searchText.filter { !" \n\t\r".contains($0)})
+        let trimText = String(searchText.filter { !" \n\t\r".contains($0) })
         viewModel.searchText = trimText
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        viewModel.getData(isLoadMore: false) { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+            case .failure(let error):
+                this.alert(msg: error.localizedDescription, handler: nil)
+            }
         }
     }
 }

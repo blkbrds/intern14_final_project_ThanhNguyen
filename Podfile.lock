@@ -8,9 +8,9 @@ PODS:
   - Realm/Headers (3.17.3)
   - RealmSwift (3.17.3):
     - Realm (= 3.17.3)
-  - SDWebImage (5.1.0):
-    - SDWebImage/Core (= 5.1.0)
-  - SDWebImage/Core (5.1.0)
+  - SDWebImage (5.1.1):
+    - SDWebImage/Core (= 5.1.1)
+  - SDWebImage/Core (5.1.1)
   - SVProgressHUD (2.2.5)
   - SwifterSwift (5.0.0):
     - SwifterSwift/AppKit (= 5.0.0)
@@ -33,6 +33,7 @@ PODS:
   - SwifterSwift/UIKit (5.0.0)
   - SwiftLint (0.27.0)
   - SwiftUtils (4.2)
+  - SwiftyJSON (4.3.0)
   - YoutubePlayer-in-WKWebView (0.2.5)
 
 DEPENDENCIES:
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - SwifterSwift (~> 5.0)
   - SwiftLint (= 0.27.0)
   - SwiftUtils (= 4.2)
+  - SwiftyJSON (~> 4.0)
   - YoutubePlayer-in-WKWebView (~> 0.2.0)
 
 SPEC REPOS:
@@ -61,6 +63,7 @@ SPEC REPOS:
     - SwifterSwift
     - SwiftLint
     - SwiftUtils
+    - SwiftyJSON
     - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
@@ -70,13 +73,14 @@ SPEC CHECKSUMS:
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
-  SDWebImage: fb387001955223213dde14bc08c8b73f371f8d8f
+  SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwifterSwift: 96f90594b370802f01647c2b1229c74a84ffafee
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftUtils: de77bcd1df216c9be6ec7011777302c60a2018a6
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   YoutubePlayer-in-WKWebView: 4dad12b3ece938a6456fa4374df78942f88b485a
 
-PODFILE CHECKSUM: f3c8b596c5ee672d93c6f7eda7e7418c16df003e
+PODFILE CHECKSUM: 2daea23eb330f1eff172e6cbae1efae131683781
 
 COCOAPODS: 1.5.3
