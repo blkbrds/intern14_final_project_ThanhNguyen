@@ -15,14 +15,27 @@ final class ProfileViewController: ViewController {
     @IBOutlet private weak var playerView: WKYTPlayerView!
     @IBOutlet private weak var tableView: UITableView!
 
+    let button = UIButton()
+
+    var isChangeImage = true {
+        didSet {
+            if isChangeImage {
+                self.button.setImage(#imageLiteral(resourceName: "ic-jupiter"), for: .normal)
+            } else {
+                self.button.setImage(#imageLiteral(resourceName: "ic-earth"), for: .normal)
+            }
+        }
+    }
+
+
     var viewModel = ProfileViewModel()
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        button.setImage(#imageLiteral(resourceName: "ic-star"), for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+//        button.setImage(#imageLiteral(resourceName: "ic-star"), for: .normal)
         button.addTarget(self, action: #selector(favoritesButtonDidClick), for: .touchUpInside)
         let rightButton = UIBarButtonItem(customView: button)
         self.navigationItem.rightBarButtonItem = rightButton

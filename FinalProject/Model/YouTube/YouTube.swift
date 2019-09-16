@@ -62,6 +62,6 @@ import ObjectMapper
         thumbnailURL <- map["snippet.thumbnails.high.url"]
         publishedAt <- map["snippet.publishedAt"]
         channelTitle <- map["snippet.channelTitle"]
-        descriptionVideo <- map["snippet.description"]        
+        descriptionVideo <- map["snippet.description"]
     }
 }

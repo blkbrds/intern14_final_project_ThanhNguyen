@@ -13,6 +13,9 @@ target 'FinalProject' do
 
   #Download Image
   pod 'SDWebImage', '~> 5.0'
+  
+  #Google Map
+  pod 'GoogleMaps'
 
   # Network
   pod 'Alamofire', '4.8.2' # Elegant HTTP Networking in Swift.

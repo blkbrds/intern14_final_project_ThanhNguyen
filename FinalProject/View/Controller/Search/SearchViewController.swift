@@ -49,6 +49,7 @@ final class SearchViewController: ViewController {
         tableView.register(SearchCell.self)
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search"
+        searchController.dimsBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
