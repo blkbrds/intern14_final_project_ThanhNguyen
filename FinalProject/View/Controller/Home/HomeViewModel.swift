@@ -54,4 +54,22 @@ final class HomeViewModel: MVVM.ViewModel {
             }
         }
     }
+
+    func numberOfSections() -> Int {
+        return SectionType.allCases.count
+    }
+
+    func numberOfRowInSection(in section: Int) -> Int {
+        guard let sectionType = SectionType(rawValue: section) else { return 0 }
+        switch sectionType {
+        case .trending, .bolero, .nhacVang, .nhacXuan:
+            return 1
+        default:
+            return 10
+        }
+    }
+
+    func getTrendingCellModel() -> HeaderCellViewModel {
+        return HeaderCellViewModel(youtubeResult: trendingResult)
+    }
 }

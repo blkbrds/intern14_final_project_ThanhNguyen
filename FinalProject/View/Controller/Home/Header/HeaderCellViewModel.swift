@@ -10,7 +10,7 @@ import Foundation
 import MVVM
 
 final class HeaderCellViewModel: MVVM.ViewModel {
-    
+
     // MARK: - Propeties
     var youtubeResult: YouTubeResult = YouTubeResult()
 

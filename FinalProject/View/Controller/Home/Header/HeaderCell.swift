@@ -34,10 +34,12 @@ final class HeaderCell: TableCell {
         super.awakeFromNib()
         configCollectionView()
     }
-    
+
     // MARK: - Register CollectionView
     private func configCollectionView() {
         collectionView.register(HeaderCollectionCell.self)
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
