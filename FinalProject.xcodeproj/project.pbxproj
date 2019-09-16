@@ -42,6 +42,8 @@
 		E35BCE2C232F2BF6003832D3 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35BCE2A232F2BF6003832D3 /* SearchViewController.xib */; };
 		E35BCE2F232F2C11003832D3 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE2D232F2C11003832D3 /* FavoritesViewController.swift */; };
 		E35BCE30232F2C11003832D3 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35BCE2E232F2C11003832D3 /* FavoritesViewController.xib */; };
+		E35BCE33232F3986003832D3 /* SectionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE32232F3986003832D3 /* SectionTableView.swift */; };
+		E35BCE35232F399C003832D3 /* SectionTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35BCE34232F399C003832D3 /* SectionTableView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 		E35BCE2A232F2BF6003832D3 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		E35BCE2D232F2C11003832D3 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		E35BCE2E232F2C11003832D3 /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
+		E35BCE32232F3986003832D3 /* SectionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableView.swift; sourceTree = "<group>"; };
+		E35BCE34232F399C003832D3 /* SectionTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionTableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +292,7 @@
 		E35BCE22232F2604003832D3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E35BCE31232F3936003832D3 /* Section */,
 				E35BCE25232F2673003832D3 /* HomeViewController.swift */,
 				E35BCE26232F2673003832D3 /* HomeViewController.xib */,
 			);
@@ -310,6 +315,15 @@
 				E35BCE2E232F2C11003832D3 /* FavoritesViewController.xib */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		E35BCE31232F3936003832D3 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				E35BCE32232F3986003832D3 /* SectionTableView.swift */,
+				E35BCE34232F399C003832D3 /* SectionTableView.xib */,
+			);
+			path = Section;
 			sourceTree = "<group>";
 		};
 		EDAB884D0E9858125EA92DBE /* Frameworks */ = {
@@ -409,6 +423,7 @@
 				6AFD030A231375EF004940FA /* Assets.xcassets in Resources */,
 				6AF60D052313B26E00F5CBA2 /* LaunchScreen.storyboard in Resources */,
 				E35BCE2C232F2BF6003832D3 /* SearchViewController.xib in Resources */,
+				E35BCE35232F399C003832D3 /* SectionTableView.xib in Resources */,
 				E35BCE30232F2C11003832D3 /* FavoritesViewController.xib in Resources */,
 				E35BCE28232F2673003832D3 /* HomeViewController.xib in Resources */,
 			);
@@ -531,6 +546,7 @@
 				6AF613BF2313C13A00F5CBA2 /* ScrollView.swift in Sources */,
 				6AF60D222313B35800F5CBA2 /* String.swift in Sources */,
 				6AF60DC22313B56B00F5CBA2 /* RequestSerializer.swift in Sources */,
+				E35BCE33232F3986003832D3 /* SectionTableView.swift in Sources */,
 				6AF613CC2313C13A00F5CBA2 /* Button.swift in Sources */,
 				6AF613B32313C13A00F5CBA2 /* ViewController.swift in Sources */,
 				6AF613C12313C13A00F5CBA2 /* TableView.swift in Sources */,
