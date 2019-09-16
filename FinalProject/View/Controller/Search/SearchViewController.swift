@@ -8,10 +8,11 @@
 
 import UIKit
 
-class SearchViewController: ViewController {
+final class SearchViewController: ViewController {
+
     // MARK: - Outlet
     @IBOutlet private weak var tableView: TableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

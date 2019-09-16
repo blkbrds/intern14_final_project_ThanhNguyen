@@ -8,7 +8,8 @@
 
 import UIKit
 
-class FavoritesViewController: ViewController {
+final class FavoritesViewController: ViewController {
+
     // MARK: - Outlet
     @IBOutlet private weak var tableView: TableView!
 

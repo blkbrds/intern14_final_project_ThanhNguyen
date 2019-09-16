@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: ViewController {
+final class HomeViewController: ViewController {
 
     // MARK: - Outlet
     @IBOutlet private weak var tableView: TableView!
