@@ -19,7 +19,7 @@ final class HeaderCell: TableCell {
         case didSelectItem(Int)
     }
 
-// MARK: - Outlet
+    // MARK: - Outlet
     @IBOutlet private weak var collectionView: CollectionView!
 
     var viewModel = HeaderCellViewModel() {
@@ -34,7 +34,8 @@ final class HeaderCell: TableCell {
         super.awakeFromNib()
         configCollectionView()
     }
-
+    
+    // MARK: - Register CollectionView
     private func configCollectionView() {
         collectionView.register(HeaderCollectionCell.self)
     }

@@ -10,7 +10,8 @@ import UIKit
 import SDWebImage
 
 final class HeaderCollectionCell: CollectionCell {
-// MARK: - Outlet
+
+    // MARK: - Outlet
     @IBOutlet private weak var headerLabel: Label!
     @IBOutlet private weak var headerImage: ImageView!
 
@@ -22,7 +23,6 @@ final class HeaderCollectionCell: CollectionCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     func updateView() {

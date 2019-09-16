@@ -21,22 +21,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return shared
     }()
 
-    enum ViewController {
+    enum ChangeRoot {
         case tabbar
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
-        configTabbar(controller: .tabbar)
+        configTabbar(root: .tabbar)
         return true
     }
 
-// MARK: - Config Tabbar
-    func configTabbar(controller: ViewController) {
-        switch controller {
+    // MARK: - Config Tabbar
+    func configTabbar(root: ChangeRoot) {
+        switch root {
         case .tabbar:
-            // Home:
             let homeViewController = HomeViewController()
             let homeNavigationController = UINavigationController(rootViewController: homeViewController)
             homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "ic-home"), selectedImage: #imageLiteral(resourceName: "ic-home-selected"))

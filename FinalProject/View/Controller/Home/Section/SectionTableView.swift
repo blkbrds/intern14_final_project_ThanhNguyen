@@ -9,7 +9,8 @@
 import UIKit
 
 final class SectionTableView: UITableViewHeaderFooterView {
-// MARK: - Outlet
+
+    // MARK: - Outlet
     @IBOutlet private weak var sectionNameLabel: Label!
 
     func updateUI(sectionName: String) {

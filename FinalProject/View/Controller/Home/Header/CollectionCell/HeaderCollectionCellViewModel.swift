@@ -10,6 +10,8 @@ import Foundation
 import MVVM
 
 final class HeaderCollectionCellViewModel: MVVM.ViewModel {
+
+    // MARK: - Propeties
     var imageURL: String = ""
     var headerName: String = ""
 
