@@ -9,7 +9,14 @@ target 'FinalProject' do
   # Data
   pod 'ObjectMapper', '3.3.0', :inhibit_warnings => true # Simple JSON Object mapping written in Swift.
   pod 'RealmSwift'
+  pod 'SwiftyJSON', '~> 4.0'
 
+  # Download Image
+  pod 'SDWebImage', '~> 5.0'
+  
+  # Youtube Player
+  pod "YoutubePlayer-in-WKWebView", "~> 0.2.0"
+  
   # Network
   pod 'Alamofire', '4.8.2' # Elegant HTTP Networking in Swift.
 

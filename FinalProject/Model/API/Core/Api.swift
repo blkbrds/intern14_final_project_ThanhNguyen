@@ -10,9 +10,17 @@ import Foundation
 import Alamofire
 
 final class Api {
-
     struct Path {
-        static let baseURL = "https://"
+        static let baseURL = "https://www.googleapis.com/youtube/v3"
+    }
+
+    struct YouTube {}
+}
+
+extension Api.Path {
+
+    struct Search {
+        static var url: String { return Api.Path.baseURL / "search" }
     }
 }
 
