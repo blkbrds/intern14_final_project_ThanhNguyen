@@ -15,6 +15,5 @@ final class FavoritesViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 }
