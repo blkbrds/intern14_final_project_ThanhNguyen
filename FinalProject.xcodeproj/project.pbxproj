@@ -44,6 +44,15 @@
 		E35BCE30232F2C11003832D3 /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35BCE2E232F2C11003832D3 /* FavoritesViewController.xib */; };
 		E35BCE33232F3986003832D3 /* SectionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE32232F3986003832D3 /* SectionTableView.swift */; };
 		E35BCE35232F399C003832D3 /* SectionTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35BCE34232F399C003832D3 /* SectionTableView.xib */; };
+		E35BCE39232F4031003832D3 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE37232F4031003832D3 /* HeaderCell.swift */; };
+		E35BCE3A232F4031003832D3 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35BCE38232F4031003832D3 /* HeaderCell.xib */; };
+		E35BCE3E232F4102003832D3 /* HeaderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE3C232F4102003832D3 /* HeaderCollectionCell.swift */; };
+		E35BCE3F232F4102003832D3 /* HeaderCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E35BCE3D232F4102003832D3 /* HeaderCollectionCell.xib */; };
+		E35BCE41232F4320003832D3 /* HeaderCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE40232F4320003832D3 /* HeaderCollectionCellViewModel.swift */; };
+		E35BCE43232F45E6003832D3 /* HeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE42232F45E6003832D3 /* HeaderCellViewModel.swift */; };
+		E35BCE45232F46F2003832D3 /* YouTubeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE44232F46F2003832D3 /* YouTubeResult.swift */; };
+		E35BCE48232F4843003832D3 /* YouTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE47232F4843003832D3 /* YouTube.swift */; };
+		E35BCE4A232F6FAD003832D3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35BCE49232F6FAD003832D3 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +111,15 @@
 		E35BCE2E232F2C11003832D3 /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
 		E35BCE32232F3986003832D3 /* SectionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableView.swift; sourceTree = "<group>"; };
 		E35BCE34232F399C003832D3 /* SectionTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionTableView.xib; sourceTree = "<group>"; };
+		E35BCE37232F4031003832D3 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		E35BCE38232F4031003832D3 /* HeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
+		E35BCE3C232F4102003832D3 /* HeaderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionCell.swift; sourceTree = "<group>"; };
+		E35BCE3D232F4102003832D3 /* HeaderCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionCell.xib; sourceTree = "<group>"; };
+		E35BCE40232F4320003832D3 /* HeaderCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionCellViewModel.swift; sourceTree = "<group>"; };
+		E35BCE42232F45E6003832D3 /* HeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCellViewModel.swift; sourceTree = "<group>"; };
+		E35BCE44232F46F2003832D3 /* YouTubeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeResult.swift; sourceTree = "<group>"; };
+		E35BCE47232F4843003832D3 /* YouTube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTube.swift; sourceTree = "<group>"; };
+		E35BCE49232F6FAD003832D3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +166,7 @@
 		6AF60D232313B56B00F5CBA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E35BCE46232F4831003832D3 /* YouTube */,
 				6AF60D242313B56B00F5CBA2 /* Session.swift */,
 				6AF60D252313B56B00F5CBA2 /* Schema */,
 				6AF60D672313B56B00F5CBA2 /* API */,
@@ -166,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				6AF60D692313B56B00F5CBA2 /* Core */,
+				E35BCE44232F46F2003832D3 /* YouTubeResult.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -292,9 +312,11 @@
 		E35BCE22232F2604003832D3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E35BCE36232F3FEC003832D3 /* Header */,
 				E35BCE31232F3936003832D3 /* Section */,
 				E35BCE25232F2673003832D3 /* HomeViewController.swift */,
 				E35BCE26232F2673003832D3 /* HomeViewController.xib */,
+				E35BCE49232F6FAD003832D3 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -324,6 +346,35 @@
 				E35BCE34232F399C003832D3 /* SectionTableView.xib */,
 			);
 			path = Section;
+			sourceTree = "<group>";
+		};
+		E35BCE36232F3FEC003832D3 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				E35BCE3B232F40BB003832D3 /* CollectionCell */,
+				E35BCE37232F4031003832D3 /* HeaderCell.swift */,
+				E35BCE38232F4031003832D3 /* HeaderCell.xib */,
+				E35BCE42232F45E6003832D3 /* HeaderCellViewModel.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		E35BCE3B232F40BB003832D3 /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				E35BCE3C232F4102003832D3 /* HeaderCollectionCell.swift */,
+				E35BCE3D232F4102003832D3 /* HeaderCollectionCell.xib */,
+				E35BCE40232F4320003832D3 /* HeaderCollectionCellViewModel.swift */,
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		E35BCE46232F4831003832D3 /* YouTube */ = {
+			isa = PBXGroup;
+			children = (
+				E35BCE47232F4843003832D3 /* YouTube.swift */,
+			);
+			path = YouTube;
 			sourceTree = "<group>";
 		};
 		EDAB884D0E9858125EA92DBE /* Frameworks */ = {
@@ -422,9 +473,11 @@
 			files = (
 				6AFD030A231375EF004940FA /* Assets.xcassets in Resources */,
 				6AF60D052313B26E00F5CBA2 /* LaunchScreen.storyboard in Resources */,
+				E35BCE3A232F4031003832D3 /* HeaderCell.xib in Resources */,
 				E35BCE2C232F2BF6003832D3 /* SearchViewController.xib in Resources */,
 				E35BCE35232F399C003832D3 /* SectionTableView.xib in Resources */,
 				E35BCE30232F2C11003832D3 /* FavoritesViewController.xib in Resources */,
+				E35BCE3F232F4102003832D3 /* HeaderCollectionCell.xib in Resources */,
 				E35BCE28232F2673003832D3 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,23 +587,30 @@
 				6AF613B72313C13A00F5CBA2 /* CollectionView.swift in Sources */,
 				6AFD0303231375EE004940FA /* AppDelegate.swift in Sources */,
 				6AF613B02313C13A00F5CBA2 /* CollectionCell.swift in Sources */,
+				E35BCE43232F45E6003832D3 /* HeaderCellViewModel.swift in Sources */,
 				E35BCE2B232F2BF6003832D3 /* SearchViewController.swift in Sources */,
+				E35BCE48232F4843003832D3 /* YouTube.swift in Sources */,
 				6AF60DC52313B56B00F5CBA2 /* ApiManager.swift in Sources */,
 				6AF60DC72313B56B00F5CBA2 /* Api.swift in Sources */,
 				6AF613B12313C13A00F5CBA2 /* CollectionViewHeaderView.swift in Sources */,
 				6AF60E1E2313B9C000F5CBA2 /* UIViewControllerExt.swift in Sources */,
 				6AF60D082313B31200F5CBA2 /* App.swift in Sources */,
 				6AF60D802313B56B00F5CBA2 /* Session.swift in Sources */,
+				E35BCE3E232F4102003832D3 /* HeaderCollectionCell.swift in Sources */,
 				6AF60DC62313B56B00F5CBA2 /* ResponseSerializer.swift in Sources */,
 				6AF60D192313B35800F5CBA2 /* Errors.swift in Sources */,
+				E35BCE41232F4320003832D3 /* HeaderCollectionCellViewModel.swift in Sources */,
 				6AF613BF2313C13A00F5CBA2 /* ScrollView.swift in Sources */,
+				E35BCE4A232F6FAD003832D3 /* HomeViewModel.swift in Sources */,
 				6AF60D222313B35800F5CBA2 /* String.swift in Sources */,
+				E35BCE45232F46F2003832D3 /* YouTubeResult.swift in Sources */,
 				6AF60DC22313B56B00F5CBA2 /* RequestSerializer.swift in Sources */,
 				E35BCE33232F3986003832D3 /* SectionTableView.swift in Sources */,
 				6AF613CC2313C13A00F5CBA2 /* Button.swift in Sources */,
 				6AF613B32313C13A00F5CBA2 /* ViewController.swift in Sources */,
 				6AF613C12313C13A00F5CBA2 /* TableView.swift in Sources */,
 				6AF613C42313C13A00F5CBA2 /* TableCell.swift in Sources */,
+				E35BCE39232F4031003832D3 /* HeaderCell.swift in Sources */,
 				6AF613C92313C13A00F5CBA2 /* ImageView.swift in Sources */,
 				6AF60E212313B9C000F5CBA2 /* CollectionExt.swift in Sources */,
 			);
