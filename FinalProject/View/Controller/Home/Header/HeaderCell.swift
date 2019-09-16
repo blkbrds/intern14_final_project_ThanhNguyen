@@ -27,7 +27,8 @@ final class HeaderCell: TableCell {
             collectionView.reloadData()
         }
     }
-
+    
+    // MARK: - Delegate
     weak var delegate: HeaderCellDelegate?
 
     override func awakeFromNib() {
@@ -63,15 +64,15 @@ extension HeaderCell: UICollectionViewDataSource {
 // MARK: - CollectionView Delegate FlowLayout
 extension HeaderCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: kScreenSize.width, height: 200)
+        return HeaderCell.sizeCollectionView
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return HeaderCell.minimumLineSpacing
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return HeaderCell.minimumInteritemSpacing
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -79,4 +80,10 @@ extension HeaderCell: UICollectionViewDelegateFlowLayout {
             delegate.cell(self, needPerformAction: .didSelectItem(indexPath.row))
         }
     }
+}
+
+extension HeaderCell {
+    static let sizeCollectionView: CGSize = CGSize(width: kScreenSize.width, height: 200)
+    static let minimumLineSpacing: CGFloat = 10
+    static let minimumInteritemSpacing: CGFloat = 10
 }
