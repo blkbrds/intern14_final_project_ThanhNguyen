@@ -25,5 +25,7 @@ final class ChannelCell: TableCell {
     private func updateView() {
         guard let viewModel = viewModel else { return }
         channelImage.sd_setImage(with: URL(string: viewModel.channelImageURL), placeholderImage: #imageLiteral(resourceName: "ic-search"))
+        channelNameLabel.text = viewModel.channelName
+        channelDescriptionLabel.text = viewModel.channelDescription
     }
 }
