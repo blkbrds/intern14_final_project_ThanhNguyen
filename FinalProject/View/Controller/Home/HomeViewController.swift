@@ -126,7 +126,7 @@ extension HomeViewController: UITableViewDataSource {
 //            break
         }
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == viewModel.trendingResult.items.count - 1 {
             getDataTrending()
