@@ -11,11 +11,21 @@ import MVVM
 import RealmSwift
 
 final class HomeViewModel: MVVM.ViewModel {
+
     // MARK: - Propeties
     var trendingResult: YouTubeResult = YouTubeResult()
+    var channelResult: YouTubeResult = YouTubeResult()
+    var boleroResult: YouTubeResult = YouTubeResult()
+    var xuanResult: YouTubeResult = YouTubeResult()
+    var vangResult: YouTubeResult = YouTubeResult()
 
+    var tokenChannel = ""
+    var tokenBolero = ""
+    var tokenNhacXuan = ""
+    var tokenNhacVang = ""
     var tokenTrending = ""
 
+    // MARK: - Section Type
     enum SectionType: Int, CaseIterable {
         case trending
         case bolero
@@ -55,6 +65,70 @@ final class HomeViewModel: MVVM.ViewModel {
         }
     }
 
+    // MARK: - GetData for Channel
+    func getDataChannel(completion: @escaping APICompletion) {
+        Api.YouTube.getYouTubeResult(pageToken: tokenChannel, maxResults: 20, keyword: "karaoke") { result in
+            switch result {
+            case .success(let channelResult):
+                self.tokenChannel = channelResult.nextPageToken
+                for video in channelResult.items {
+                    self.channelResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    // MARK: - GetData for Bolero
+    func getDataBolero(completion: @escaping APICompletion) {
+        Api.YouTube.getYouTubeResult(pageToken: tokenBolero, maxResults: 10, keyword: "bolero") { result in
+            switch result {
+            case .success(let boleroResult):
+                self.tokenBolero = boleroResult.nextPageToken
+                for video in boleroResult.items {
+                    self.boleroResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    // MARK: - GetData for NhacXuan
+    func getDataNhacXuan(completion: @escaping APICompletion) {
+        Api.YouTube.getYouTubeResult(pageToken: tokenNhacXuan, maxResults: 10, keyword: "nhacxuan") { result in
+            switch result {
+            case .success(let xuanResult):
+                self.tokenNhacXuan = xuanResult.nextPageToken
+                for video in xuanResult.items {
+                    self.xuanResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    // MARK: - GetData for NhacVang
+    func getDataNhacVang(completion: @escaping APICompletion) {
+        Api.YouTube.getYouTubeResult(pageToken: tokenNhacVang, maxResults: 10, keyword: "nhacvang") { result in
+            switch result {
+            case .success(let vangResult):
+                self.tokenNhacVang = vangResult.nextPageToken
+                for video in vangResult.items {
+                    self.vangResult.items.append(video)
+                }
+                completion(.success)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func numberOfSections() -> Int {
         return SectionType.allCases.count
     }
@@ -65,11 +139,29 @@ final class HomeViewModel: MVVM.ViewModel {
         case .trending, .bolero, .nhacVang, .nhacXuan:
             return 1
         default:
-            return 10
+            return channelResult.items.count
         }
+    }
+
+    func getChannelCellModel(at indexPath: IndexPath) -> ChannelCellViewModel {
+        return ChannelCellViewModel(channelImageURL: channelResult.items[indexPath.row].thumbnailURL,
+                                    channelName: channelResult.items[indexPath.row].channelTitle,
+                                    channelDescription: channelResult.items[indexPath.row].descriptionVideo)
     }
 
     func getTrendingCellModel() -> HeaderCellViewModel {
         return HeaderCellViewModel(youtubeResult: trendingResult)
+    }
+
+    func getBoleroCellModel() -> KindCellViewModel {
+        return KindCellViewModel(kindType: .bolero, bolero: boleroResult)
+    }
+
+    func getNhacXuanCellModel() -> KindCellViewModel {
+        return KindCellViewModel(kindType: .nhacXuan, xuan: xuanResult)
+    }
+
+    func getNhacVangCellModel() -> KindCellViewModel {
+        return KindCellViewModel(kindType: .nhacVang, vang: vangResult)
     }
 }

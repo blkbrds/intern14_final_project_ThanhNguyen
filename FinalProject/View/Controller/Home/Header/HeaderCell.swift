@@ -27,7 +27,7 @@ final class HeaderCell: TableCell {
             collectionView.reloadData()
         }
     }
-    
+
     // MARK: - Delegate
     weak var delegate: HeaderCellDelegate?
 

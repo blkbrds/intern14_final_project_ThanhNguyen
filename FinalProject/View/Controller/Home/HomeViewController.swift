@@ -20,7 +20,7 @@ final class HomeViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerTableView()
-        getDataTrending()
+        updateData()
 
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -28,8 +28,19 @@ final class HomeViewController: ViewController {
     }
 
     // MARK: - Private Func
+
+    private func updateData() {
+        getDataTrending()
+        getDataBolero()
+        getDataChannel()
+        getDataNhacVang()
+        getDataNhacXuan()
+    }
+
     private func registerTableView() {
         tableView.register(HeaderCell.self)
+        tableView.register(KindCell.self)
+        tableView.register(ChannelCell.self)
         tableView.register(SectionTableView.self)
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,6 +48,54 @@ final class HomeViewController: ViewController {
 
     private func getDataTrending() {
         viewModel.getDataTrending { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
+
+    private func getDataChannel() {
+        viewModel.getDataChannel { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
+
+    private func getDataBolero() {
+        viewModel.getDataBolero { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
+
+    private func getDataNhacXuan() {
+        viewModel.getDataNhacXuan { [weak self] result in
+            guard let this = self else { return }
+            switch result {
+            case .success:
+                this.tableView.reloadData()
+            case .failure(let error):
+                this.alert(title: "", msg: error.localizedDescription, handler: nil)
+            }
+        }
+    }
+
+    private func getDataNhacVang() {
+        viewModel.getDataNhacVang { [weak self] result in
             guard let this = self else { return }
             switch result {
             case .success:
@@ -89,44 +148,35 @@ extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionType = HomeViewModel.SectionType(rawValue: indexPath.section) else { return UITableViewCell() }
-
         switch sectionType {
         case .trending:
             let cell = tableView.dequeue(HeaderCell.self)
             cell.viewModel = viewModel.getTrendingCellModel()
 //            cell.delegate = self
             return cell
-        default:
-            let cell = tableView.dequeue(HeaderCell.self)
-            cell.viewModel = viewModel.getTrendingCellModel()
-            //            cell.delegate = self
+        case .channel:
+            let cell = tableView.dequeue(ChannelCell.self)
+            cell.viewModel = viewModel.getChannelCellModel(at: indexPath)
             return cell
-//        case .channel:
-////            let cell = tableView.dequeue(ChannelCell.self)
-////            cell.viewModel = viewModel.getChannelCellModel(at: indexPath)
-////            return cell
-//            break
-//        case .bolero:
-////            let cell = tableView.dequeue(KindCell.self)
-////            cell.viewModel = viewModel.getBoleroCellModel()
-////            cell.delegate = self
-////            return cell
-//            break
-//        case .nhacXuan:
-////            let cell = tableView.dequeue(KindCell.self)
-////            cell.viewModel = viewModel.getNhacXuanCellModel()
-////            cell.delegate = self
-////            return cell
-//            break
-//        case .nhacVang:
-////            let cell = tableView.dequeue(KindCell.self)
-////            cell.viewModel = viewModel.getNhacVangCellModel()
-////            cell.delegate = self
-////            return cell
-//            break
+        case .bolero:
+            let cell = tableView.dequeue(KindCell.self)
+            cell.viewModel = viewModel.getBoleroCellModel()
+//            cell.delegate = self
+            return cell
+        case .nhacXuan:
+            let cell = tableView.dequeue(KindCell.self)
+            cell.viewModel = viewModel.getNhacXuanCellModel()
+//            cell.delegate = self
+            return cell
+        case .nhacVang:
+            let cell = tableView.dequeue(KindCell.self)
+            cell.viewModel = viewModel.getNhacVangCellModel()
+//            cell.delegate = self
+            return cell
         }
     }
 
+    // MARK: - LoadMore
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == viewModel.trendingResult.items.count - 1 {
             getDataTrending()
@@ -142,7 +192,7 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController {
     // MARK: - HeightForRowAt
     static let trendingCellHeight: CGFloat = 200
-    static let channelCellHeight: CGFloat = 100
+    static let channelCellHeight: CGFloat = 60
     static let kindCellHeight: CGFloat = 80
 
     // MARK: - HeightForHeaderInSection

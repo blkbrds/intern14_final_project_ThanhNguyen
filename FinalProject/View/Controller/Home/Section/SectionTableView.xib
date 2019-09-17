@@ -15,11 +15,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dn8-U9-S04" customClass="Label" customModule="FinalProject" customModuleProvider="target">
-                    <rect key="frame" x="20" y="0.0" width="150" height="29"/>
+                    <rect key="frame" x="5" y="0.0" width="150" height="29"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="150" id="gBQ-e7-cCG"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="16"/>
                     <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -37,7 +37,7 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Nxf-oO-xKs" secondAttribute="trailing" constant="10" id="FAN-f0-LAs"/>
                 <constraint firstItem="Nxf-oO-xKs" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Wa2-LI-4bP"/>
-                <constraint firstItem="dn8-U9-S04" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="bls-gj-KQ0"/>
+                <constraint firstItem="dn8-U9-S04" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="bls-gj-KQ0"/>
                 <constraint firstItem="dn8-U9-S04" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="fvD-5y-AWM"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="dn8-U9-S04" secondAttribute="bottom" id="hke-PX-DDI"/>
                 <constraint firstAttribute="bottom" secondItem="Nxf-oO-xKs" secondAttribute="bottom" id="jSR-9S-qKe"/>
