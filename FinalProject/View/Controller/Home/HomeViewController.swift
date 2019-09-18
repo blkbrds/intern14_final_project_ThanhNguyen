@@ -16,6 +16,7 @@ final class HomeViewController: ViewController {
     // MARK: - Propeties
     private var viewModel = HomeViewModel()
     private var dispatchGroup = DispatchGroup()
+    private var isLoadingAPI = false
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -28,7 +29,7 @@ final class HomeViewController: ViewController {
     private func updateData() {
         getDataTrending()
         getDataBolero()
-        getDataChannel()
+        getDataChannel(isLoadMore: false)
         getDataNhacVang()
         getDataNhacXuan()
         dispatchGroup.notify(queue: .main) { [weak self] in
@@ -59,12 +60,15 @@ final class HomeViewController: ViewController {
         }
     }
 
-    private func getDataChannel() {
+    private func getDataChannel(isLoadMore: Bool) {
         dispatchGroup.enter()
-        viewModel.getDataChannel { [weak self] result in
+        isLoadingAPI = true
+        viewModel.getDataChannel(isLoadMore: isLoadMore) { [weak self] result in
             guard let this = self else { return }
+            this.isLoadingAPI = false
             switch result {
-            case .success: break
+            case .success:
+                this.tableView.reloadData()
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
@@ -183,8 +187,8 @@ extension HomeViewController: UITableViewDataSource {
 
     // MARK: - LoadMore
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == viewModel.channelResult.items.count - 1 {
-            getDataChannel()
+        if indexPath.row == viewModel.channelResult.items.count - 3 {
+            getDataChannel(isLoadMore: true)
         }
     }
 }

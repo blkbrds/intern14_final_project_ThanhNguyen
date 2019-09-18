@@ -66,11 +66,14 @@ final class HomeViewModel: MVVM.ViewModel {
     }
 
     // MARK: - GetData for Channel
-    func getDataChannel(completion: @escaping APICompletion) {
-        Api.YouTube.getYouTubeResult(pageToken: tokenChannel, maxResults: 20, keyword: "karaoke") { result in
+    func getDataChannel(isLoadMore: Bool, completion: @escaping APICompletion) {
+        Api.YouTube.getYouTubeResult(pageToken: tokenChannel, maxResults: 20, keyword: "michaeljackson") { result in
             switch result {
             case .success(let channelResult):
                 self.tokenChannel = channelResult.nextPageToken
+                if !isLoadMore {
+                    self.channelResult.items.removeAll()
+                }
                 for video in channelResult.items {
                     self.channelResult.items.append(video)
                 }
