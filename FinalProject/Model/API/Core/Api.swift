@@ -18,7 +18,6 @@ final class Api {
 }
 
 extension Api.Path {
-
     struct Search {
         static var url: String { return Api.Path.baseURL / "search" }
     }

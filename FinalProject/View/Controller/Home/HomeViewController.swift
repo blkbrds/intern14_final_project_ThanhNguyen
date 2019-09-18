@@ -14,30 +14,30 @@ final class HomeViewController: ViewController {
     @IBOutlet private weak var tableView: TableView!
 
     // MARK: - Propeties
-    var viewModel = HomeViewModel()
+    private var viewModel = HomeViewModel()
+    private var dispatchGroup = DispatchGroup()
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerTableView()
+        configTableView()
         updateData()
-
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 
     // MARK: - Private Func
-
     private func updateData() {
         getDataTrending()
         getDataBolero()
         getDataChannel()
         getDataNhacVang()
         getDataNhacXuan()
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let this = self else { return }
+            this.tableView.reloadData()
+        }
     }
 
-    private func registerTableView() {
+    private func configTableView() {
         tableView.register(HeaderCell.self)
         tableView.register(KindCell.self)
         tableView.register(ChannelCell.self)
@@ -47,62 +47,67 @@ final class HomeViewController: ViewController {
     }
 
     private func getDataTrending() {
+        dispatchGroup.enter()
         viewModel.getDataTrending { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success:
-                this.tableView.reloadData()
+            case .success: break
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
+            this.dispatchGroup.leave()
         }
     }
 
     private func getDataChannel() {
+        dispatchGroup.enter()
         viewModel.getDataChannel { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success:
-                this.tableView.reloadData()
+            case .success: break
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
+            this.dispatchGroup.leave()
         }
     }
 
     private func getDataBolero() {
+        dispatchGroup.enter()
         viewModel.getDataBolero { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success:
-                this.tableView.reloadData()
+            case .success: break
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
+            this.dispatchGroup.leave()
         }
     }
 
     private func getDataNhacXuan() {
+        dispatchGroup.enter()
         viewModel.getDataNhacXuan { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success:
-                this.tableView.reloadData()
+            case .success: break
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
+            this.dispatchGroup.leave()
         }
     }
 
     private func getDataNhacVang() {
+        dispatchGroup.enter()
         viewModel.getDataNhacVang { [weak self] result in
             guard let this = self else { return }
             switch result {
-            case .success:
-                this.tableView.reloadData()
+            case .success: break
             case .failure(let error):
                 this.alert(title: "", msg: error.localizedDescription, handler: nil)
             }
+            this.dispatchGroup.leave()
         }
     }
 }
@@ -178,8 +183,8 @@ extension HomeViewController: UITableViewDataSource {
 
     // MARK: - LoadMore
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == viewModel.trendingResult.items.count - 1 {
-            getDataTrending()
+        if indexPath.row == viewModel.channelResult.items.count - 1 {
+            getDataChannel()
         }
     }
 }
