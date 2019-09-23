@@ -47,6 +47,7 @@ final class HomeViewController: ViewController {
         tableView.dataSource = self
     }
 
+    // MARK: - GetData
     private func getDataTrending() {
         dispatchGroup.enter()
         viewModel.getDataTrending { [weak self] result in

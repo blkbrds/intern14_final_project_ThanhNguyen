@@ -25,6 +25,27 @@ final class HomeViewModel: MVVM.ViewModel {
     var tokenNhacVang = ""
     var tokenTrending = ""
 
+    func writeRealm(objects: [Object]) {
+        let realm = try Realm()
+        try! realm.write {
+            realm.deleteAll()
+            objects.forEach({ (object) in
+                realm.add(object)
+            })
+        }
+    }
+
+    func fetchData(completion: @escaping (Bool) -> ()) {
+        do {
+            let realm = try! Realm()
+            let musics = realm.objects(YouTube.self)
+            print("REALM: Musics total = \(musics.count)")
+            self.myMusic.append(contentsOf: musics)
+            
+            completion(true)
+        }
+    }
+
     // MARK: - Section Type
     enum SectionType: Int, CaseIterable {
         case trending
@@ -58,6 +79,7 @@ final class HomeViewModel: MVVM.ViewModel {
                 for video in trendingResult.items {
                     self.trendingResult.items.append(video)
                 }
+//                RealmManager.shared.add(object: self.trendingResult)
                 completion(.success)
             case .failure(let error):
                 completion(.failure(error))

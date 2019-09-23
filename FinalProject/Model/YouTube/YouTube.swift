@@ -18,7 +18,11 @@ import ObjectMapper
     dynamic var publishedAt = ""
     dynamic var channelTitle = ""
     dynamic var descriptionVideo = ""
-    dynamic var isFavorite = false
+    dynamic var videoName = ""
+
+    override static func primaryKey() -> String? {
+        return "videoName"
+    }
 
     required convenience init?(map: Map) {
         self.init()
