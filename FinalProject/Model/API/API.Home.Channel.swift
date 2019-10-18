@@ -22,6 +22,7 @@ extension Api.Channel {
         }
     }
 
+
     static func getSearchResult(pageToken: String, maxResults: Int, keyword: String, completion: @escaping Completion<SearchResult>) {
         let urlString = QueryString(pageToken: pageToken, maxResults: maxResults, keyword: keyword).toURL()
 
