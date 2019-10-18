@@ -32,7 +32,6 @@ extension ApiManager {
                                         encoding: encoding,
                                         headers: header
             ).responseJSON { (response) in
-                // Fix bug AW-4571: Call request one more time when see error 53 or -1_005
                 if let error = response.error,
                     error.code == Api.Error.connectionAbort.code || error.code == Api.Error.connectionWasLost.code {
                     Alamofire.request(urlString.urlString,

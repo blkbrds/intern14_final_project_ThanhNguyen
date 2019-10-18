@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (4.8.2)
+  - GoogleMaps (3.4.0):
+    - GoogleMaps/Maps (= 3.4.0)
+  - GoogleMaps/Base (3.4.0)
+  - GoogleMaps/Maps (3.4.0):
+    - GoogleMaps/Base
   - IQKeyboardManagerSwift (6.0.5)
   - MVVM-Swift (1.1.0)
   - ObjectMapper (3.3.0)
@@ -8,6 +13,9 @@ PODS:
   - Realm/Headers (3.17.3)
   - RealmSwift (3.17.3):
     - Realm (= 3.17.3)
+  - SDWebImage (5.1.1):
+    - SDWebImage/Core (= 5.1.1)
+  - SDWebImage/Core (5.1.1)
   - SVProgressHUD (2.2.5)
   - SwifterSwift (5.0.0):
     - SwifterSwift/AppKit (= 5.0.0)
@@ -30,43 +38,57 @@ PODS:
   - SwifterSwift/UIKit (5.0.0)
   - SwiftLint (0.27.0)
   - SwiftUtils (4.2)
+  - SwiftyJSON (4.3.0)
+  - YoutubePlayer-in-WKWebView (0.2.5)
 
 DEPENDENCIES:
   - Alamofire (= 4.8.2)
+  - GoogleMaps
   - IQKeyboardManagerSwift (~> 6.0.4)
   - MVVM-Swift (= 1.1.0)
   - ObjectMapper (= 3.3.0)
   - RealmSwift
+  - SDWebImage (~> 5.0)
   - SVProgressHUD (= 2.2.5)
   - SwifterSwift (~> 5.0)
   - SwiftLint (= 0.27.0)
   - SwiftUtils (= 4.2)
+  - SwiftyJSON (~> 4.0)
+  - YoutubePlayer-in-WKWebView (~> 0.2.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - GoogleMaps
     - IQKeyboardManagerSwift
     - MVVM-Swift
     - ObjectMapper
     - Realm
     - RealmSwift
+    - SDWebImage
     - SVProgressHUD
     - SwifterSwift
     - SwiftLint
     - SwiftUtils
+    - SwiftyJSON
+    - YoutubePlayer-in-WKWebView
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  GoogleMaps: 67f4a604f80dd6a22d09c2a507a3a395b9f23060
   IQKeyboardManagerSwift: c14eca30f6001457d6ddf25e313f23fb6578c41c
   MVVM-Swift: 54749cc12bb30af41632f30a2c576a18bf9e4bc8
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
+  SDWebImage: 96d7f03415ccb28d299d765f93557ff8a617abd8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwifterSwift: 96f90594b370802f01647c2b1229c74a84ffafee
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftUtils: de77bcd1df216c9be6ec7011777302c60a2018a6
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  YoutubePlayer-in-WKWebView: 4dad12b3ece938a6456fa4374df78942f88b485a
 
-PODFILE CHECKSUM: 969c362b9e8758097c9eab13bc76f6757a0ee7c0
+PODFILE CHECKSUM: bb32939758c574b8e0eb9f54c62f33242433dec0
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5

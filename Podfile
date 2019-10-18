@@ -9,6 +9,13 @@ target 'FinalProject' do
   # Data
   pod 'ObjectMapper', '3.3.0', :inhibit_warnings => true # Simple JSON Object mapping written in Swift.
   pod 'RealmSwift'
+  pod 'SwiftyJSON', '~> 4.0'
+
+  #Download Image
+  pod 'SDWebImage', '~> 5.0'
+  
+  #Google Map
+  pod 'GoogleMaps'
 
   # Network
   pod 'Alamofire', '4.8.2' # Elegant HTTP Networking in Swift.
@@ -23,6 +30,9 @@ target 'FinalProject' do
 
   # Tool to enforce Swift style and conventions
   pod 'SwiftLint', '0.27.0'
+
+  # Pods for FinalProject
+  pod "YoutubePlayer-in-WKWebView", "~> 0.2.0"
 
   target 'FinalProjectTests' do
     inherit! :search_paths
